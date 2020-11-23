@@ -6,5 +6,5 @@ def setup_test_database
   connection = PG.connect(dbname: 'bnb_test')
 
   # Clear test table
-  connection.exec("TRUNCATE users;")
+  connection.exec("TRUNCATE users CASCADE;")
 end
