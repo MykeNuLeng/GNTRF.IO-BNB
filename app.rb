@@ -12,4 +12,8 @@ class Controller < Sinatra::Base
     session[:user] = true
     erb(:home)
   end
+
+  get '/listings' do
+    erb(:listings)
+  end
 end
