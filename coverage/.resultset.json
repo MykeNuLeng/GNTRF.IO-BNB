@@ -1,28 +1,92 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/lucybennell/Projects/GNTRF.IO-BNB/app.rb": {
+      "/Users/awithsmith/Nextcloud/makers/GNTRF.IO-BNB/app.rb": {
         "lines": [
           1,
           null,
           1,
           1,
-          0,
+          null,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          2,
+          2,
           null,
           null
         ]
       },
-      "/Users/lucybennell/Projects/GNTRF.IO-BNB/spec/order_spec.rb": {
+      "/Users/awithsmith/Nextcloud/makers/GNTRF.IO-BNB/spec/features/browse_listings_spec.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/Users/awithsmith/Nextcloud/makers/GNTRF.IO-BNB/lib/space.rb": {
+        "lines": [
+          1,
+          1,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/awithsmith/Nextcloud/makers/GNTRF.IO-BNB/spec/features/navbar_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/Users/awithsmith/Nextcloud/makers/GNTRF.IO-BNB/spec/order_spec.rb": {
         "lines": [
 
         ]
       },
-      "/Users/lucybennell/Projects/GNTRF.IO-BNB/spec/space_spec.rb": {
+      "/Users/awithsmith/Nextcloud/makers/GNTRF.IO-BNB/spec/space_spec.rb": {
         "lines": [
 
         ]
       },
-      "/Users/lucybennell/Projects/GNTRF.IO-BNB/spec/user_spec.rb": {
+      "/Users/awithsmith/Nextcloud/makers/GNTRF.IO-BNB/spec/user_spec.rb": {
         "lines": [
           1,
           1,
@@ -87,7 +151,7 @@
           null
         ]
       },
-      "/Users/lucybennell/Projects/GNTRF.IO-BNB/lib/user.rb": {
+      "/Users/awithsmith/Nextcloud/makers/GNTRF.IO-BNB/lib/user.rb": {
         "lines": [
           1,
           1,
@@ -133,6 +197,6 @@
         ]
       }
     },
-    "timestamp": 1606150820
+    "timestamp": 1606152631
   }
 }
