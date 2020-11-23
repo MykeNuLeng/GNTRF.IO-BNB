@@ -14,6 +14,7 @@ class Controller < Sinatra::Base
   end
 
   get '/listings' do
+    @listings = User.all_spaces
     erb(:listings)
   end
 end

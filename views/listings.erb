@@ -27,7 +27,11 @@
     </nav>
     <main>
     <div class="container">
-    <h3> There are no listings </h3>
+
+    <h3><%= "There are no listings" if @listings.empty? else "Listings"%> </h3>
+    <% @listings.each do |listing|%>
+    <p><%=listing.headline%> - £<%=listing.price / 100%></p>
+    <%end%>
     </div>
     </main>
   </body>
