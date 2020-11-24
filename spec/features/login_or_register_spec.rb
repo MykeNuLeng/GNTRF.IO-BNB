@@ -28,22 +28,21 @@ feature "Login/Register page" do
     visit '/'
     click_link('Sign Up')
     fill_in('email', with: 'test@test.com')
+    fill_in('username', with: 'test')
     fill_in('password', with: 'test123')
     fill_in('confirm-password', with: 'test123')
-    expect(User).to receive(:create).with(email: "test@test.com", password: 'test123')
+    expect(User).to receive(:create).with(email: "test@test.com", username: "test", password: 'test123')
     click_button('REGISTER')
     expect(current_path).to eq('/')
   end
 
   scenario 'Valid user can sign in' do
-    # currently failing test needs to be rewritten using the new objects
-
     user = User.create(email: "test@test.com", username: "brian", password: "1234")
     visit '/'
     fill_in('email', with: 'test@test.com')
     fill_in('password', with: 'test123')
     click_button('LOGIN')
-    expect(current_path).to eq '/listings'
-    expect(page).to have_content(/test@test.com/)
+    expect(current_path).to eq '/spaces'
+    expect(page).to have_content(/brian/)
   end
 end
