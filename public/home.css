@@ -3,6 +3,10 @@
 body {
   background-color: #7ec4cf;
   background-image: url("./images/gntrf-background.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 105%;
+  background-attachment: fixed;
   font-family: "Roboto", sans-serif;
 }
 
