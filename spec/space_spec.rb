@@ -1,6 +1,6 @@
 require 'space'
 require 'user'
-require 'pg'
+#require 'pg'
 
 describe Space do
   subject { Space.new(space_id: 1, user_id: 420, price: 15000, headline: "Amazing space", description: "Come stay in our place for kinda cheaps") }
