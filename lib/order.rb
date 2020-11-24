@@ -1,5 +1,6 @@
 require 'pg'
 require_relative './user'
+require_relative 'database_connection'
 
 class Order
 
@@ -15,28 +16,28 @@ class Order
   end
 
   def self.create(space_id:, user_id:, booking_start:, booking_end:)
-    connection = PG.connect(dbname: 'bnb')
-    connection = PG.connect(dbname: 'bnb_test') if ENV['ENVIRONMENT'] == 'test'
-    result = connection.exec("INSERT INTO orders (space_id, user_id, booking_start, booking_end)
+    result = DatabaseConnection.query("INSERT INTO orders (space_id, user_id, booking_start, booking_end)
                               VALUES ('#{space_id}', '#{user_id}', '#{booking_start}', '#{booking_end}')
                               RETURNING id, booking_start, booking_end;")
     Order.new(order_id: result[0]["id"], space_id: space_id, user_id: user_id, booking_start: result[0]["booking_start"], booking_end: result[0]["booking_end"], confirmed: false)
   end
 
   def self.all_pending
-    connection = PG.connect(dbname: 'bnb')
-    connection = PG.connect(dbname: 'bnb_test') if ENV['ENVIRONMENT'] == 'test'
-    result = connection.exec("SELECT * FROM orders WHERE confirmed = 'false';")
+    result = DatabaseConnection.query("SELECT * FROM orders WHERE confirmed = 'false';")
     result.map { |listing|
       Order.new(order_id: listing['id'], space_id: listing['space_id'], user_id: listing['user_id'], booking_start: listing['booking_start'], booking_end: listing['booking_end'], confirmed: listing['confirmed']) }
   end
 
-  def self.pending_by_id(user_id)
-    Order.all_pending.select{ |listing| User.user_id == user_id }
+  def self.pending_by_id(user_id:)
+    Order.all_pending.select{ |listing| listing.user_id == user_id }
   end
 
-  def self.pending_by_username(username)
-    Order.all_pending.select{ |listing| User.find(listing.user_id).username == username }
+  def self.pending_by_username(username:)
+    Order.all_pending.select{ |listing| User.find(user_id: listing.user_id).username == username }
+  end
+
+  def self.confirm(order_id:)
+    DatabaseConnection.query("UPDATE orders SET confirmed = true WHERE id = '#{order_id}';")
   end
 
   private
