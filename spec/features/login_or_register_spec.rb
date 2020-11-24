@@ -8,7 +8,7 @@ feature "Login/Register page" do
     expect(page).to have_link('Sign Up')
     expect(page).to have_field('email')
     expect(page).to have_field('password')
-    expect(page).to have_button('Login')
+    expect(page).to have_button('LOGIN')
   end
 
   scenario 'User has all the options required to register' do
