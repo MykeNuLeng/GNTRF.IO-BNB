@@ -47,4 +47,21 @@ describe Space do
     end
   end
 
+  context "#.all" do
+
+    it 'returns an array of all listed spaces' do
+      test_user = User.create(username: "testy", password: "123password", email: "testymctesterson@test.org")
+      test_space1 = Space.create(user_id: test_user.user_id, price: 15000, headline: "Amazing space", description: "Come stay in our place for kinda cheaps")
+      test_space2 = Space.create(user_id: test_user.user_id, price: 5400, headline: "Kinda alright space", description: "Really cheap, really damp!")
+
+      expect(Space.all).to be_an_instance_of Array
+      expect(Space.all[0]).to be_an_instance_of Space
+      expect(Space.all[0].user_id).to eq test_space1.user_id
+      expect(Space.all[0].price).to eq test_space1.price
+      expect(Space.all[0].headline).to eq test_space1.headline
+      expect(Space.all[0].description).to eq test_space1.description
+      expect(Space.all.length).to eq 2
+    end
+  end
+
 end
