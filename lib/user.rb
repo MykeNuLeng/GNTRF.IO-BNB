@@ -28,14 +28,14 @@ class User
     User.new(user_id: user_info["id"], username: user_info["username"], email: user_info["email"])
   end
 
-  def self.authenticate(username:, password:)
+  def self.authenticate(email:, password:)
     connection = PG.connect(dbname: 'bnb')
     connection = PG.connect(dbname: 'bnb_test') if ENV['ENVIRONMENT'] == 'test'
     user_info = connection.exec("SELECT * FROM users
-                                 WHERE username = '#{username}';")
+                                 WHERE email = '#{email}';")
     return false unless user_info.cmd_tuples > 0 # nb that cmd_tuples is a pg object attribute for the number of database lines returned
-    return false unless BCrypt::Password.new(user_info[0]["password"]) == password # nb might cause a problem if username's not unique
-    User.new(user_id: user_info[0]["id"], username: username, email: user_info[0]["email"])
+    return false unless BCrypt::Password.new(user_info[0]["password"]) == password # nb might cause a problem if email's not unique
+    User.new(user_id: user_info[0]["id"], username: user_info[0]["username"], email: email)
   end
 
 end

@@ -1,6 +1,6 @@
 require 'space'
 require 'user'
-require 'pg'
+#require 'pg'
 
 describe Space do
   subject { Space.new(space_id: 1, user_id: 420, price: 15000, headline: "Amazing space", description: "Come stay in our place for kinda cheaps") }
@@ -34,7 +34,6 @@ describe Space do
     end
 
     it "Returns space correctly after calling" do
-      connection = PG.connect(dbname: 'bnb_test')
       # need test_user for valid user_id
       test_user = User.create(username: "testy", password: "123password", email: "testymctesterson@test.org")
       returned_space = Space.create(user_id: test_user.user_id, price: 5400, headline: "Kinda alright space", description: "Really cheap, really damp!")
