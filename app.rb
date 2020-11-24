@@ -23,11 +23,11 @@ class Controller < Sinatra::Base
       email: params[:email],
       password: params[:password]
     )
-    
+
     if session[:user]
       redirect('/spaces')
     else
-      flash[:notice] = "Email or password invalid"
+      flash[:notice] = "EMAIL OR PASSWORD INVALID"
       redirect('/')
     end
   end

@@ -52,6 +52,6 @@ feature "Login/Register page" do
     fill_in('password', with: 'test123')
     click_button('LOGIN')
     expect(current_path).to eq '/'
-    expect(page).to have_content(/Email or password invalid/)
+    expect(page).to have_content(/EMAIL OR PASSWORD INVALID/)
   end
 end
