@@ -114,6 +114,11 @@ form {
     bottom: 50px;
 }
 
+.user-input {
+  position: relative;
+  right: 15px;
+}
+
 .user-input i {
     position: relative;
     left: 60px;
