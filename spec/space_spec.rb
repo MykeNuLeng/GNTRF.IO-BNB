@@ -1,5 +1,6 @@
 require 'space'
 require 'user'
+require './lib/database_connection'
 #require 'pg'
 
 describe Space do
@@ -27,10 +28,9 @@ describe Space do
 
   context "#create" do
     it "Adds one user to databaseafter calling" do
-      connection = PG.connect(dbname: 'bnb_test')
       # need test_user for valid user_id
       test_user = User.create(username: "testy", password: "123password", email: "testymctesterson@test.org")
-      expect { Space.create(user_id: test_user.user_id, price: 15000, headline: "Amazing space", description: "Come stay in our place for kinda cheaps")}.to change{ connection.exec("SELECT * FROM spaces").map{|e| e}.length }.by(1)
+      expect { Space.create(user_id: test_user.user_id, price: 15000, headline: "Amazing space", description: "Come stay in our place for kinda cheaps")}.to change{ DatabaseConnection.query("SELECT * FROM spaces").map{|e| e}.length }.by(1)
     end
 
     it "Returns space correctly after calling" do

@@ -2,6 +2,8 @@ require "sinatra/base"
 require 'sinatra/flash'
 require_relative "./lib/space"
 require_relative "./lib/user"
+require_relative "./database_connection_setup"
+
 
 class Controller < Sinatra::Base
   enable :sessions
