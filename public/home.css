@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap');
+
+body {
+    background-color: #7EC4CF;
+    background-image: url('./images/gntrf-background.png');
+}
+
+.logo {
+    margin: 10px;
+}
+
+.main-box {
+    opacity: 0.9;
+    background: #D4AFB9;
+    border: 2px solid #D1CFE2;
+    border-radius: 71px;
+    width: 650px;
+    height: 590px;
+    margin: auto;
+}
+
+.login-box-links {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+
+.log-in-selector {
+    font-family: 'Roboto', sans-serif;;
+    font-weight: 500;
+    font-size: 38px;
+    color: #000000;
+    text-align: left;
+}
+
+.sign-up-selector {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 38px;
+    color: #000000;
+    text-align: left;
+}
+
+.box-line-break {
+    border: 1px solid #D1CFE2;
+    position: relative;
+    bottom: 30px;
+}

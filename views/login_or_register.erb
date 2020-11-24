@@ -5,22 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="refresh" content="30" >
     <title>GNTRF.IO - Home</title>
+    <link rel="stylesheet" href="./home.css">
   </head>
   <body>
-    <div class="logo">
-        GNTRF.IO
-    </div>
-  
+    <img src="./images/logo.png" class="logo">
+    <div class="main-box">
     <span class="login-box-links">
     <%if @state == 'login'%>
-      <p>Log In</p>
-      <a href="/users/new">Sign Up</a>
+      <p class="log-in-selector">Log In</p>
+      <a class="sign-up-selector" href="/users/new">Sign Up</a>
     <%else %>
       <a href='/'>Log In</a>
       <p>Sign Up</p>
     <%end %>
     </span>
-
+    <hr class="box-line-break">
     <%if @state == 'login'%>
     <form name="login-form" action="/session/new" method='post'>
       <input type="text" name="email">
@@ -35,5 +34,6 @@
       <button>Register</button>
     </form>
     <%end %>
+    </div>
   </body>
   </html>
