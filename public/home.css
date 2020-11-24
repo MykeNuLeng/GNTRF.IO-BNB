@@ -3,6 +3,7 @@
 body {
   background-color: #7ec4cf;
   background-image: url("./images/gntrf-background.png");
+  font-family: "Roboto", sans-serif;
 }
 
 .logo {
@@ -36,14 +37,17 @@ a:hover {
 
 .log-in-selector {
   font-family: "Roboto", sans-serif;
-  font-weight: 500;
+  font-weight: 300;
   font-size: 38px;
   color: #000000;
   text-align: left;
 }
 
+.selected {
+  font-weight: 500 !important;
+}
+
 .sign-up-selector {
-  font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-size: 38px;
   color: #000000;
@@ -60,7 +64,6 @@ button {
   background: #7ec4cf;
   border: 1px solid #52b2cf;
   border-radius: 33.5px;
-  font-family: "Roboto", sans-serif;
   font-size: 32px;
   color: white;
   padding: 7.5px 25px 7.5px 25px;
@@ -80,6 +83,7 @@ input {
     width: 445px;
     outline: none;
     padding-left: 80px;
+    font-size: 20px;
 }
 
 .user-input {
@@ -95,8 +99,9 @@ form {
 .user-input i {
     position: relative;
     left: 60px;
-    top: 10px;
     font-size: 30px;
+    font-family: ;
+    top: 5px;
 }
 
 .user-input i {
