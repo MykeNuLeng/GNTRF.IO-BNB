@@ -56,6 +56,21 @@ describe Order do
       expect(test_order.booking_end.strftime("%Y-%m-%d")).to eq("2021-04-21")
       expect(test_order.confirmed).to eq(false)
     end
+
+  #   context '.customer_order_history' do
+  #     it 'Returns an array of customer orders' do
+  #       space_owner = User.create(username: "testy1", password: "123password", email: "testymctesterson1@test.org")
+  #       order_owner = User.create(username: "testy2", password: "123password", email: "testymctesterson2@test.org")
+  #       # need test space for valid space_id
+  #       test_space = Space.create(user_id: space_owner.user_id, price: 2500, headline: "Livable space", description: "Rated \"not yet dangerous\" by official bodies")
+  #       # tests
+  #       test_order = Order.create(space_id: test_space.space_id, user_id: order_owner.user_id, booking_start: "2021/04/19", booking_end: "2021/04/21") 
+  #       test_order2 = Order.create(space_id: test_space.space_id, user_id: order_owner.user_id, booking_start: "2021/05/19", booking_end: "2021/05/21") 
+  #       Order.confirm(order_id: test_order.order_id)
+  #       expect(Order.customer_order_history(order_owner.user_id).length).to eq 2
+  #   end
+  # end
+
     context '.all_pending' do
       it 'returns an empty array if there is nothing pending' do
         expect(Order.all_pending.empty?).to eq true
