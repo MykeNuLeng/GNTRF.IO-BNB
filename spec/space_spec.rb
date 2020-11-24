@@ -34,7 +34,6 @@ describe Space do
     end
 
     it "Returns space correctly after calling" do
-      connection = PG.connect(dbname: 'bnb_test')
       # need test_user for valid user_id
       test_user = User.create(username: "testy", password: "123password", email: "testymctesterson@test.org")
       returned_space = Space.create(user_id: test_user.user_id, price: 5400, headline: "Kinda alright space", description: "Really cheap, really damp!")
