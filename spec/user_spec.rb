@@ -18,8 +18,7 @@ describe User do
 
   context "#create" do
     it "Adds one user to databaseafter calling" do
-      connection = PG.connect(dbname: 'bnb_test')
-      expect { User.create(username: "testy", password: "123password", email: "testymctesterson@test.org")}.to change{ connection.exec("SELECT * FROM users").map{|e| e}.length }.by(1)
+      expect { User.create(username: "testy", password: "123password", email: "testymctesterson@test.org")}.to change{ DatabaseConnection.query("SELECT * FROM users").map{|e| e}.length }.by(1)
     end
 
     it "Returns user correctly after calling" do

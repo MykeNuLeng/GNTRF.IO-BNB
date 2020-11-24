@@ -1,5 +1,6 @@
 require 'pg'
 require 'bcrypt'
+require_relative 'database_connection'
 
 class User
   attr_reader :user_id, :username, :email
@@ -11,27 +12,21 @@ class User
   end
 
   def self.create(username:, password:, email:)
-    connection = PG.connect(dbname: 'bnb')
-    connection = PG.connect(dbname: 'bnb_test') if ENV['ENVIRONMENT'] == 'test'
     encrypted_password = BCrypt::Password.create(password)
-    result = connection.exec("INSERT INTO users (username, password, email)
+    result = DatabaseConnection.query("INSERT INTO users (username, password, email)
                               VALUES ('#{username}', '#{encrypted_password}', '#{email}')
                               RETURNING id;")
     User.new(user_id: result[0]["id"], username: username, email: email)
   end
 
   def self.find(user_id:)
-    connection = PG.connect(dbname: 'bnb')
-    connection = PG.connect(dbname: 'bnb_test') if ENV['ENVIRONMENT'] == 'test'
-    user_info = connection.exec("SELECT * FROM users
+    user_info = DatabaseConnection.query("SELECT * FROM users
                                  WHERE id = #{user_id};")[0]
     User.new(user_id: user_info["id"], username: user_info["username"], email: user_info["email"])
   end
 
   def self.authenticate(email:, password:)
-    connection = PG.connect(dbname: 'bnb')
-    connection = PG.connect(dbname: 'bnb_test') if ENV['ENVIRONMENT'] == 'test'
-    user_info = connection.exec("SELECT * FROM users
+    user_info = DatabaseConnection.query("SELECT * FROM users
                                  WHERE email = '#{email}';")
     return false unless user_info.cmd_tuples > 0 # nb that cmd_tuples is a pg object attribute for the number of database lines returned
     return false unless BCrypt::Password.new(user_info[0]["password"]) == password # nb might cause a problem if email's not unique

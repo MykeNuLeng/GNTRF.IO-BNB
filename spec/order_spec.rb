@@ -32,14 +32,13 @@ describe Order do
 
   context '#create' do
     it 'Adds one item to data base when called' do
-      connection = PG.connect(dbname: 'bnb_test')
       # need test users for valid user_id
       space_owner = User.create(username: "testy1", password: "123password", email: "testymctesterson1@test.org")
       order_owner = User.create(username: "testy2", password: "123password", email: "testymctesterson2@test.org")
       # need test space for valid space_id
       test_space = Space.create(user_id: space_owner.user_id, price: 2500, headline: "Livable space", description: "Rated \"not yet dangerous\" by official bodies")
       # actual test
-      expect { Order.create(space_id: test_space.space_id, user_id: order_owner.user_id, booking_start: "2021-04-19", booking_end: "2021-04-21") }.to change{ connection.exec("SELECT * FROM orders").map{|e| e}.length }.by(1)
+      expect { Order.create(space_id: test_space.space_id, user_id: order_owner.user_id, booking_start: "2021-04-19", booking_end: "2021-04-21") }.to change{ DatabaseConnection.query("SELECT * FROM orders").map{|e| e}.length }.by(1)
     end
 
     it 'Correctly returns created order after called' do
