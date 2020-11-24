@@ -134,6 +134,8 @@ GEM
       rack (~> 2.2)
       rack-protection (= 2.1.0)
       tilt (~> 2.0)
+    sinatra-flash (0.3.0)
+      sinatra (>= 1.0.0)
     sys-uname (1.2.2)
       ffi (~> 1.1)
     term-ansicolor (1.2.2)
@@ -167,6 +169,7 @@ DEPENDENCIES
   simplecov
   simplecov-console
   sinatra
+  sinatra-flash
 
 BUNDLED WITH
    2.1.4

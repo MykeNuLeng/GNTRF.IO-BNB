@@ -37,12 +37,21 @@ feature "Login/Register page" do
   end
 
   scenario 'Valid user can sign in' do
-    user = User.create(email: "test@test.com", username: "brian", password: "1234")
+    User.create(email: "test@test.com", username: "brian", password: "test123")
     visit '/'
     fill_in('email', with: 'test@test.com')
     fill_in('password', with: 'test123')
     click_button('LOGIN')
     expect(current_path).to eq '/spaces'
     expect(page).to have_content(/brian/)
+  end
+
+  scenario 'non-user cannot sign in' do
+    visit '/'
+    fill_in('email', with: 'test@test.com')
+    fill_in('password', with: 'test123')
+    click_button('LOGIN')
+    expect(current_path).to eq '/'
+    expect(page).to have_content(/Email or password invalid/)
   end
 end

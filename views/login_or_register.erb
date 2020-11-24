@@ -9,6 +9,9 @@
   </head>
   <body>
     <img src="../images/logo.png" class="logo">
+    <div class="alert">
+      <%= flash[:notice]%>
+    </div>
     <div class="main-box <%= "sign-up-box" if @state == 'register'%>">
     <span class="login-box-links">
     <%if @state == 'login'%>

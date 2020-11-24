@@ -1,9 +1,11 @@
 require "sinatra/base"
+require 'sinatra/flash'
 require_relative "./lib/space"
 require_relative "./lib/user"
 
 class Controller < Sinatra::Base
   enable :sessions
+  register Sinatra::Flash
 
   get '/' do
     @state = 'login'
@@ -19,9 +21,15 @@ class Controller < Sinatra::Base
   post '/session/new' do
     session[:user] = User.authenticate(
       email: params[:email],
-      password: params[:password])
-
-    redirect('/spaces')
+      password: params[:password]
+    )
+    
+    if session[:user]
+      redirect('/spaces')
+    else
+      flash[:notice] = "Email or password invalid"
+      redirect('/')
+    end
   end
 
   get '/users/new' do
