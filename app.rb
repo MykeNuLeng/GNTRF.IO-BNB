@@ -1,5 +1,6 @@
 require "sinatra/base"
 require_relative "./lib/space"
+require_relative "./lib/user"
 
 class Controller < Sinatra::Base
   enable :sessions
@@ -18,6 +19,11 @@ class Controller < Sinatra::Base
   get '/users/new' do
     @state = 'register'
     erb(:login_or_register)
+  end
+
+  post '/users/new' do
+    User.create(email: params[:email], password: params[:password])
+    redirect '/'
   end
 
   get '/listings' do

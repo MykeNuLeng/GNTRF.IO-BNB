@@ -28,7 +28,7 @@
       <button>Login</button>
     </form>
     <%else %>
-    <form name="registration-form">
+    <form name="registration-form" action="/users/new" method='post'>
       <input type="text" name="email">
       <input type="password" name="password">
       <input type="password" name="confirm-password">
