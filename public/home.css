@@ -78,6 +78,8 @@ input {
     border-radius: 33.5px;
     height: 67px;
     width: 445px;
+    outline: none;
+    padding-left: 80px;
 }
 
 .user-input {
