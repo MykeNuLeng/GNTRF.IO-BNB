@@ -28,12 +28,16 @@ class Order
       Order.new(order_id: listing['id'], space_id: listing['space_id'], user_id: listing['user_id'], booking_start: listing['booking_start'], booking_end: listing['booking_end'], confirmed: listing['confirmed']) }
   end
 
-  def self.pending_by_id(user_id)
-    Order.all_pending.select{ |listing| User.user_id == user_id }
+  def self.pending_by_id(user_id:)
+    Order.all_pending.select{ |listing| listing.user_id == user_id }
   end
 
-  def self.pending_by_username(username)
-    Order.all_pending.select{ |listing| User.find(listing.user_id).username == username }
+  def self.pending_by_username(username:)
+    Order.all_pending.select{ |listing| User.find(user_id: listing.user_id).username == username }
+  end
+
+  def self.confirm(order_id:)
+    DatabaseConnection.query("UPDATE orders SET confirmed = true WHERE id = '#{order_id}';")
   end
 
   private
