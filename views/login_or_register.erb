@@ -6,6 +6,7 @@
     <meta http-equiv="refresh" content="30" >
     <title>GNTRF.IO - Home</title>
     <link rel="stylesheet" href="./home.css">
+    <script src="https://kit.fontawesome.com/0a9ff46f27.js" crossorigin="anonymous"></script>
   </head>
   <body>
     <img src="./images/logo.png" class="logo">
@@ -20,20 +21,37 @@
     <%end %>
     </span>
     <hr class="box-line-break">
+    <div class="user-input">
     <%if @state == 'login'%>
     <form name="login-form" action="/session/new" method='post'>
+      <div class="email-field">
+      <i class="far fa-envelope"></i>
       <input type="text" name="email">
+      </div>
+      <div class="password-field">
+      <i class="fas fa-lock"></i>
       <input type="password" name="password">
+      </div>
       <button>LOGIN</button>
     </form>
     <%else %>
     <form name="registration-form" action="/users/new" method='post'>
+      <div class="email-field">
+      <i class="far fa-envelope"></i>
       <input type="text" name="email">
+      </div>
+      <div class="password-field">
+      <i class="fas fa-lock"></i>
       <input type="password" name="password">
+      </div>
+      <div class="confirm-email-field">
+      <i class="fas fa-lock"></i>
       <input type="password" name="confirm-password">
+      </div>
       <button>Register</button>
     </form>
     <%end %>
+    </div>
     </div>
   </body>
   </html>

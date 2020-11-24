@@ -9,6 +9,14 @@ body {
   margin: 10px;
 }
 
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 .main-box {
   opacity: 0.9;
   background: #d4afb9;
@@ -55,10 +63,41 @@ button {
   font-family: "Roboto", sans-serif;
   font-size: 32px;
   color: white;
-  padding: 7.5px 25px 7.5px 25px;  
+  padding: 7.5px 25px 7.5px 25px;
+  margin-top: 90px;
 }
 
 button:hover {
     cursor: pointer;
     background: #52b2cf;
 }
+
+input {
+    background: #D1CFE2;
+    border: 1px solid #9CADCE;
+    border-radius: 33.5px;
+    height: 67px;
+    width: 445px;
+}
+
+.user-input {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+form {
+    margin-top: 30px;
+}
+
+.user-input i {
+    position: relative;
+    left: 60px;
+    top: 10px;
+    font-size: 30px;
+}
+
+.user-input i {
+    margin-top: 50px;
+}
+
