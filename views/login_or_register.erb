@@ -11,17 +11,29 @@
         GNTRF.IO
     </div>
   
-    <%#Sign up%>
     <span class="login-box-links">
-    <p>Log In</p>
-    <a href="#">Sign Up</a>
+    <%if @state == 'login'%>
+      <p>Log In</p>
+      <a href="/users/new">Sign Up</a>
+    <%else %>
+      <a href='/'>Log In</a>
+      <p>Sign Up</p>
+    <%end %>
     </span>
-    <%#Register%>
+
+    <%if @state == 'login'%>
     <form name="login-form">
       <input type="text" name="email">
       <input type="password" name="password">
       <button>Login</button>
     </form>
-    </span>
+    <%else %>
+    <form name="registration-form">
+      <input type="text" name="email">
+      <input type="password" name="password">
+      <input type="password" name="confirm-password">
+      <button>Register</button>
+    </form>
+    <%end %>
   </body>
   </html>
