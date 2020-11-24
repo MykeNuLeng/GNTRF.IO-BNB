@@ -49,6 +49,10 @@ describe Space do
 
   context "#.all" do
 
+    it 'returns an empty array if theres nothing there' do
+      expect(Space.all.empty?).to be true
+    end
+
     it 'returns an array of all listed spaces' do
       test_user = User.create(username: "testy", password: "123password", email: "testymctesterson@test.org")
       test_space1 = Space.create(user_id: test_user.user_id, price: 15000, headline: "Amazing space", description: "Come stay in our place for kinda cheaps")
