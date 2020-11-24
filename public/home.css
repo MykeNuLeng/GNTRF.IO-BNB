@@ -10,6 +10,24 @@ body {
   margin: 10px;
 }
 
+.alert {
+    background: #52B2CF;
+    border: 1px solid #D4AFB9;
+    border-radius: 33.5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 40px;
+    width: 628px;
+    margin: auto;
+    width: 35%;
+    font-size: 32px;
+    color: #FFFFFF;
+    text-align: center;
+    font-weight: 500;
+    position: relative;
+    bottom: 2em;
+}
+
 a {
     text-decoration: none;
 }
@@ -24,8 +42,12 @@ a:hover {
   border: 2px solid #d1cfe2;
   border-radius: 71px;
   width: 650px;
-  height: 590px;
+  height: 500px;
   margin: auto;
+}
+
+.sign-up-box {
+  height: 650px;
 }
 
 .login-box-links {
@@ -87,7 +109,9 @@ input {
 }
 
 form {
-    text-align: center
+    position: relative;
+    text-align: center;
+    bottom: 50px;
 }
 
 .user-input i {
@@ -108,5 +132,5 @@ form {
 
 .login-button {
     position: relative;
-    top: 50px;
+    top: 30px;
 }

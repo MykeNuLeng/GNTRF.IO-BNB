@@ -28,7 +28,7 @@
     <main>
     <div class="container">
 
-    <h3><% if @listings.empty? %></h3>
+    <h3><% if @listings.nil? %></h3>
     <h3> There are no listings </h3>
     <% else%>
     <% @listings.each do |listing|%>
