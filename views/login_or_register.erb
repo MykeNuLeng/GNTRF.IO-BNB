@@ -9,7 +9,7 @@
   </head>
   <body>
     <img src="../images/logo.png" class="logo">
-    <div class="main-box">
+    <div class="main-box <%= "sign-up-box" if @state == 'register'%>">
     <span class="login-box-links">
     <%if @state == 'login'%>
       <p class="log-in-selector selected">Log In</p>
@@ -35,6 +35,10 @@
     </form>
     <%else %>
     <form name="registration-form" action="/users/new" method='post'>
+      <div class="username-field">
+      <i class="fas fa-user"></i>
+      <input type="text" name="username" placeholder="Username">
+      </div>
       <div class="email-field">
       <i class="far fa-envelope"></i>
       <input type="text" name="email" placeholder="Email">
