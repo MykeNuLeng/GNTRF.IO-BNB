@@ -22,7 +22,7 @@
     </span>
 
     <%if @state == 'login'%>
-    <form name="login-form">
+    <form name="login-form" action="/session/new" method='post'>
       <input type="text" name="email">
       <input type="password" name="password">
       <button>Login</button>

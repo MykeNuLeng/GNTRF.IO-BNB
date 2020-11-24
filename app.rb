@@ -16,6 +16,11 @@ class Controller < Sinatra::Base
     erb(:home)
   end
 
+  post '/session/new' do
+    session[:user] = User.authenticate(email: params[:email], password: params[:password])
+    redirect('/listings')
+  end
+
   get '/users/new' do
     @state = 'register'
     erb(:login_or_register)
