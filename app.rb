@@ -5,7 +5,7 @@ class Controller < Sinatra::Base
   enable :sessions
 
   get '/' do
-    erb(:home)
+    erb(:login_or_register)
   end
 
   # test, remove later 
