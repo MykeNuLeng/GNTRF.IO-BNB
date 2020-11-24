@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap");
+
+body {
+  background-color: #7ec4cf;
+  background-image: url("./images/gntrf-background.png");
+  font-family: "Roboto", sans-serif;
+}
+
+.logo {
+  margin: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.main-box {
+  opacity: 0.9;
+  background: #d4afb9;
+  border: 2px solid #d1cfe2;
+  border-radius: 71px;
+  width: 650px;
+  height: 590px;
+  margin: auto;
+}
+
+.login-box-links {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+
+.log-in-selector {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-size: 38px;
+  color: #000000;
+  text-align: left;
+}
+
+.selected {
+  font-weight: 500 !important;
+}
+
+.sign-up-selector {
+  font-weight: 300;
+  font-size: 38px;
+  color: #000000;
+  text-align: left;
+}
+
+.box-line-break {
+  border: 1px solid #d1cfe2;
+  position: relative;
+  bottom: 30px;
+}
+
+button {
+  background: #7ec4cf;
+  border: 1px solid #52b2cf;
+  border-radius: 33.5px;
+  font-size: 32px;
+  color: white;
+  padding: 7.5px 25px 7.5px 25px;
+  margin-top: 90px;
+}
+
+button:hover {
+    cursor: pointer;
+    background: #52b2cf;
+}
+
+input {
+    background: #D1CFE2;
+    border: 1px solid #9CADCE;
+    border-radius: 33.5px;
+    height: 67px;
+    width: 445px;
+    outline: none;
+    padding-left: 80px;
+    font-size: 20px;
+}
+
+form {
+    text-align: center
+}
+
+.user-input i {
+    position: relative;
+    left: 60px;
+    font-size: 30px;
+    top: 5px;
+}
+
+.user-input i {
+    margin-top: 50px;
+}
+
+.register-button {
+    position: relative;
+    bottom: 50px;
+}
+
+.login-button {
+    position: relative;
+    top: 50px;
+}

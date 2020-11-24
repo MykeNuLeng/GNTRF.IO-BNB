@@ -15,7 +15,7 @@
     </div>
     <%# Sign Up Link %>
     <span class="session-buttons">
-    <%# Sign In Link %>
+    <%Sign In Link %>
     <%if session[:user]%>
     <button>Log Off</button>
     <%else%>
@@ -28,9 +28,9 @@
     <main>
     <div class="container">
 
-    <h3><%= if @listings.empty? %></h3>
+    <h3><% if @listings.empty? %></h3>
     <h3> There are no listings </h3>
-    <%= else%>
+    <% else%>
     <% @listings.each do |listing|%>
     <p><%=listing.headline%> - £<%=listing.price / 100%></p>
     <%end%>
