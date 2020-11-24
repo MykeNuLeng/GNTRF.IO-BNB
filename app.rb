@@ -1,4 +1,5 @@
 require "sinatra/base"
+require_relative "./lib/space"
 
 class Controller < Sinatra::Base
   enable :sessions
@@ -14,7 +15,7 @@ class Controller < Sinatra::Base
   end
 
   get '/listings' do
-    @listings = User.all_spaces
+    @listings = Space.all_spaces
     erb(:listings)
   end
 end
