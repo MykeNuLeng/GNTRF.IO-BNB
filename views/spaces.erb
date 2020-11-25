@@ -14,7 +14,11 @@
       <div class="nav-buttons">
         <button>NEW LISTING</button>
         <button>PROFILE</button>
-        <button>LOG OUT</button>
+        <%if session[:user]%>
+        <button>LOG OFF</button>
+        <%else%>
+        <button>LOG IN</button>
+        <%end%>
       </div>
     </div>
     <div class="container">
