@@ -10,6 +10,57 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+.nav-bar {
+    width: 100%;
+}
+
 .logo {
-    margin: 10px;
-  }
+  position: absolute;
+  display: inline;
+
+  top: 5px;
+  left: 5px;
+}
+
+.nav-buttons {
+  position: absolute;
+  display: inline;
+  right: 5px;
+  top: 5px;
+}
+
+button {
+  background: #7ec4cf;
+  border: 1px solid #52b2cf;
+  border-radius: 33.5px;
+  font-size: 32px;
+  color: white;
+  padding: 7.5px 25px 7.5px 25px;
+  margin-top: 90px;
+}
+
+button:hover {
+  cursor: pointer;
+  background: #52b2cf;
+}
+
+.container {
+    margin-top: 200px;
+}
+
+.no-listings {
+    background: #52B2CF;
+    border: 1px solid #D4AFB9;
+    border-radius: 33.5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 40px;
+    width: 628px;
+    margin: auto;
+    font-size: 32px;
+    color: #FFFFFF;
+    text-align: center;
+    font-weight: 500;
+    position: relative;
+    top: 2em;
+}

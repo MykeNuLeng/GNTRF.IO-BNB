@@ -7,7 +7,7 @@ feature "browse listings" do
 
   scenario "there are no listings" do
     visit '/spaces'
-    expect(page).to have_content "There are no listings"
+    expect(page).to have_content "NO CURRENT LISTINGS!"
   end
 
   scenario "displays the headline and price of a list of one Listing" do

@@ -8,26 +8,25 @@
     <link rel="stylesheet" href="../spaces.css">
   </head>
   <body>
-    <nav class="nav-bar">
-      <img src="../images/logo.png" class="logo">
-      <span class="nav-buttons">
+    <div class="nav-bar">
+      <div class="logo">
+        <img src="../images/logo.png">
+      </div>
+      <div class="nav-buttons">
         <button>NEW LISTING</button>
         <button>PROFILE</button>
         <button>LOG OUT</button>
-      </span>
-    </nav>
-    
-    <main>
+      </div>
+    </div>
     <div class="container">
 
-    <h3><% if @listings.nil? %></h3>
-    <h3> There are no listings </h3>
+    <% if @listings.nil? %>
+    <h3 class="no-listings">NO CURRENT LISTINGS!</h3>
     <% else%>
     <% @listings.each do |listing|%>
     <p><%=listing.headline%> - £<%=listing.price / 100%></p>
     <%end%>
     <%end%>
     </div>
-    </main>
   </body>
   </html>
