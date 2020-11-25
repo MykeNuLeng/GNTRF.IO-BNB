@@ -26,7 +26,7 @@ describe Space do
     expect(Space.all.empty?).to be true
   end
 
-  context "Test user needed-- " do
+  context " Test user needed-- " do
 
     before do
       # need test_user for valid user_id
