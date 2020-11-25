@@ -65,6 +65,24 @@ describe Space do
         expect(Space.all.length).to eq 2
       end
 
+      it "Correctly updates price when .update_price called" do
+        Space.update_price(space_id: @test_space1.space_id, price: 30000)
+        expect(Space.all[0].space_id).to eq(@test_space1.space_id)
+        expect(Space.all[0].price).to eq(30000)
+      end
+
+      it "Correctly updates headline when .update_headline called" do
+        Space.update_headline(space_id: @test_space1.space_id, headline: "passable")
+        expect(Space.all[0].space_id).to eq(@test_space1.space_id)
+        expect(Space.all[0].headline).to eq("passable")
+      end
+
+      it "Correctly updates description when .update_description called" do
+        Space.update_description(space_id: @test_space1.space_id, description: "now with fewer bed bugs")
+        expect(Space.all[0].space_id).to eq(@test_space1.space_id)
+        expect(Space.all[0].description).to eq("now with fewer bed bugs")
+      end
+
       it '.delete(space_id) deletes a space from the table' do
         Space.delete(space_id: @test_space1.space_id)
         expect(Space.all.length).to eq(0)
