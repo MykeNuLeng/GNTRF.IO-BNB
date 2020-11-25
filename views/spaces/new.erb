@@ -19,7 +19,7 @@
         <%if session[:user]%>
         <button formaction="/sessions/end">LOG OFF</button>
         <%else%>
-        <button>LOG IN</button>
+        <button formaction="/">LOG IN</button>
         <%end%>
         </form>
       </div>

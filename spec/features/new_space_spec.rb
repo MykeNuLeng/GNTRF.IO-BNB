@@ -36,3 +36,11 @@ feature 'new space' do
     expect(page).to have_content(/£69/)
   end
 end
+
+feature "link to login page" do
+  scenario "it sends you back to log in" do
+    visit '/spaces/new'
+    click_button('LOG IN')
+    expect(current_path).to eq('/')
+  end
+end
