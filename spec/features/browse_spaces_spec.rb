@@ -34,6 +34,5 @@ feature "browse spaces" do
     click_button('LOGIN')
     find('.logo').click
     expect(current_path).to eq '/spaces'
-    save_and_open_page('./test_output.html')
   end
 end
