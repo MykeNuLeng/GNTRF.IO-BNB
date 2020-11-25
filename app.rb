@@ -28,6 +28,12 @@ class Controller < Sinatra::Base
     end
   end
 
+  get '/sessions/end' do
+    session.clear
+    flash[:notice] = "YOU'VE LOGGED OFF"
+    redirect '/'
+  end
+
   get '/users/new' do
     @state = 'register'
     erb(:login_or_register)
