@@ -9,3 +9,49 @@ body {
   background-attachment: fixed;
   font-family: "Roboto", sans-serif;
 }
+
+.logo {
+  position: absolute;
+  display: inline;
+  top: 5px;
+  left: 5px;
+}
+
+.nav-buttons {
+  position: absolute;
+  display: inline;
+  right: 35px;
+  top: 25px;
+}
+
+button {
+  background: #7ec4cf;
+  border: 1px solid #52b2cf;
+  border-radius: 33.5px;
+  font-size: 32px;
+  color: white;
+  padding: 7.5px 25px 7.5px 25px;
+}
+
+.nav-buttons button {
+  margin-right: 15px;
+}
+
+button:hover {
+  cursor: pointer;
+  background: #52b2cf;
+}
+
+.main-box {
+  margin-top: 150px;
+}
+
+.user-input {
+  opacity: 0.9;
+  background: #d4afb9;
+  border: 2px solid #d1cfe2;
+  border-radius: 29px;
+  width: 80%;
+  height: 45em;
+  margin: auto;
+}
