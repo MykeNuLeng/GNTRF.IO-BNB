@@ -78,18 +78,53 @@ describe Order do
         expect(Order.all_pending.first.booking_end).to eq(@test_order.booking_end)
       end
 
-      it ".pending_by_id returns array of pending orders by order owner id" do
-        result = Order.pending_by_id(user_id: @order_owner.user_id)
+      it ".pending_by_renter_id returns array of pending orders by order owner id" do
+        result = Order.pending_by_renter_id(user_id: @order_owner.user_id)
         expect(result).to be_an_instance_of Array
         expect(result.first.booking_start).to eq @test_order.booking_start
       end
 
-      it ".pending_by_username returns array of pending orders by order owner id" do
-        result = Order.pending_by_username(username: 'testy2')
+      it ".pending_by_renter_username returns array of pending orders by order owner id" do
+        result = Order.pending_by_renter_username(username: 'testy2')
         expect(result).to be_an_instance_of Array
         expect(result.first.booking_start).to eq @test_order.booking_start
       end
 
     end # inner context end
   end # outer context end
+
+  context " #.pending_by_landlord_id" do
+
+    before do
+      # test user 1 will be searched landlord, test user 2 needed to prove orders on his listings not shown, and test user orderer to own the orders
+      @test_user1 = User.create(username: "testy1", password: "123password", email: "testymctesterson1@test.org")
+      @test_user2 = User.create(username: "testy2", password: "123password", email: "testymctesterson2@test.org")
+      @test_user_orderer = User.create(username: "orderman", password: "123password", email: "order@chaos.org")
+      # test space 1 owned by our searched landlord, test space 2 used by unsearched
+      @test_space1 = Space.create(user_id: @test_user1.user_id, price: 1000, headline: "Owned by test_user1", description: "Owned by test_user1 long")
+      @test_space2 = Space.create(user_id: @test_user2.user_id, price: 1000, headline: "Owned by test_user2", description: "Owned by test_user2 long")
+      # test order 1 to 3 owned by searched landlord, with one set to confirmed i.e. this one should not be seen in result
+      @test_order1 = Order.create(space_id: @test_space1.space_id, user_id: @test_user_orderer.user_id, booking_start: "2021/01/01", booking_end: "2021/01/03")
+      Order.confirm(order_id: @test_order1.order_id)
+      @test_order2 = Order.create(space_id: @test_space1.space_id, user_id: @test_user_orderer.user_id, booking_start: "2021/01/04", booking_end: "2021/01/06")
+      @test_order3 = Order.create(space_id: @test_space1.space_id, user_id: @test_user_orderer.user_id, booking_start: "2021/01/07", booking_end: "2021/01/09")
+      # test orders 3 & 4 are for the unsearched landlord and shouldn't be returned by search
+      @test_order4 = Order.create(space_id: @test_space2.space_id, user_id: @test_user_orderer.user_id, booking_start: "2021/01/01", booking_end: "2021/01/03")
+      @test_order5 = Order.create(space_id: @test_space2.space_id, user_id: @test_user_orderer.user_id, booking_start: "2021/01/04", booking_end: "2021/01/06")
+    end
+
+    it "Should return correct orders when called" do
+      result = Order.pending_by_landlord_id(user_id: @test_user1.user_id)
+      expect(result).to be_instance_of(Array)
+      expect(result.length).to eq(2)
+      expect(result.first.space_id).to eq(@test_space1.space_id)
+      expect(result.first.booking_start.strftime("%Y-%m-%d")).to eq("2021-01-04")
+      expect(result.first.booking_start.strftime("%Y-%m-%d")).to eq("2021-01-06")
+    end
+
+
+
+  end
+
+
 end
