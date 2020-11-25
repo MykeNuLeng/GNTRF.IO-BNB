@@ -10,6 +10,19 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+textarea {
+    font-family: "Roboto", sans-serif !important;
+    font-weight: 200;
+    padding-top: 5px;
+    padding-right: 20px;
+    resize: none;
+}
+
+input {
+    font-size: 17.5px;
+    font-weight: 200;
+}
+
 .logo {
   position: absolute;
   display: inline;
@@ -54,4 +67,32 @@ button:hover {
   width: 80%;
   height: 45em;
   margin: auto;
+}
+
+.user-input input, textarea {
+    background: #D1CFE2;
+    border: 1px solid #9CADCE;
+    border-radius: 33.5px;
+    padding-left: 45px;
+    outline: none;
+}
+
+.user-input i {
+    position: relative;
+    left: 40px;
+}
+
+#headline {
+    width: 580px;
+    height: 80px;
+}
+
+#description {
+    width: 580px;
+    height: 135px;
+}
+
+#photo, #price {
+    width: 580px;
+    height: 60px;
 }

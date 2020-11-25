@@ -34,19 +34,19 @@
     <form name="new-space" action="/spaces/new" method='post'>
       <div class="headline-field">
       <i class="fas fa-feather"></i>
-      <input type="text" name="headline" placeholder="Headline">
+      <textarea maxlength="140" name="headline" id="headline" placeholder="Headline"></textarea>
       </div>
       <div class="decription-field">
       <i class="fas fa-feather"></i>
-      <input type="text" name="description" placeholder="Description">
+      <textarea maxlength="400" id="description" name="description" placeholder="Description"></textarea>
       </div>
       <div class="price-field">
       <i class="fas fa-pound-sign"></i>
-      <input type="text" name="price" placeholder="Price">
+      <input type="text" id="price" name="price" placeholder="Price">
       </div>
       <div class="photo-field">
       <i class="fas fa-camera"></i>
-      <input type="text" name="photo" placeholder="Photo">
+      <input type="text" id="photo" name="photo" placeholder="Photo">
       </div>
       <button class="submit-button">Submit</button>
     </form>
