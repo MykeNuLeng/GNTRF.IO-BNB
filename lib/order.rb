@@ -38,20 +38,20 @@ class Order
 
   # working here start
 
-  def self.pending_by_landlord_id(user_id:)
-    result = DatabaseConnection.query("SELECT orders.id, orders.space_id, orders.user_id, orders.booking_start, orders.booking_end FROM (
-        SELECT orders.id, orders.space_id, orders.user_id, orders.booking_start, orders.booking_end, spaces.id, spaces.user_id
-        FROM orders
-        WHERE confirmed = 'false'
-        INNER JOIN spaces ON orders.space_id = space.id)
-        WHERE spaces.user_id = #{user_id}")
-    result.map { |listing|
-    Order.new(order_id: listing['orders.id'], space_id: listing['orders.space_id'], user_id: listing['orders.user_id'], booking_start: listing['orders.booking_start'], booking_end: listing['orders.booking_end'], confirmed: false) }
-  end
-
-  def self.pending_by_renter_username(username:)
-    Order.all_pending.select{ |listing| User.find(user_id: listing.user_id).username == username }
-  end
+  # def self.pending_by_landlord_id(user_id:)
+  #   result = DatabaseConnection.query("SELECT orders.id, orders.space_id, orders.user_id, orders.booking_start, orders.booking_end FROM (
+  #       SELECT orders.id, orders.space_id, orders.user_id, orders.booking_start, orders.booking_end, spaces.id, spaces.user_id
+  #       FROM orders
+  #       WHERE confirmed = 'false'
+  #       INNER JOIN spaces ON orders.space_id = space.id)
+  #       WHERE spaces.user_id = #{user_id}")
+  #   result.map { |listing|
+  #   Order.new(order_id: listing['orders.id'], space_id: listing['orders.space_id'], user_id: listing['orders.user_id'], booking_start: listing['orders.booking_start'], booking_end: listing['orders.booking_end'], confirmed: false) }
+  # end
+  #
+  # def self.pending_by_renter_username(username:)
+  #
+  # end
 
   # working here end
 
