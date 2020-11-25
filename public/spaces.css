@@ -77,6 +77,14 @@ button:hover {
     margin: auto;
     margin-bottom: 100px;
     height: 150px;
+    display: flexbox;
+    object-fit: contain;
+}
+
+.space .image {
+    float: left;
+    margin-top: 20px;
+    margin-left: 5px;
 }
 
 .headline {
