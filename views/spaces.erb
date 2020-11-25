@@ -4,27 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="refresh" content="30" >
-    <title>GNTRF.IO - Listings</title>
+    <title>GNTRF.IO - Spaces</title>
     <link rel="stylesheet" href="../spaces.css">
   </head>
   <body>
     <nav class="nav-bar">
-    <%# Logo %>
-    <div class="logo">
-        GNTRF.IO
-    </div>
-    <%# Sign Up Link %>
-    <span class="session-buttons">
-    <%#Sign In Link %>
-    <%if session[:user]%>
-    <button>Log Off</button>
-    <%else%>
-    <button>Sign Up</button>
-    <button>Sign In</button>
-    <%end%>
-    <%# User welcome if logged in %>
-    </span>
+      <img src="../images/logo.png" class="logo">
+      <span class="nav-buttons">
+        <button>NEW LISTING</button>
+        <button>PROFILE</button>
+        <button>LOG OUT</button>
+      </span>
     </nav>
+    
     <main>
     <div class="container">
 

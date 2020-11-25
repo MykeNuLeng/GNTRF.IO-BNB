@@ -9,3 +9,7 @@ body {
   background-attachment: fixed;
   font-family: "Roboto", sans-serif;
 }
+
+.logo {
+    margin: 10px;
+  }
