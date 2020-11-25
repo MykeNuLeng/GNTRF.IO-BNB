@@ -24,4 +24,58 @@ class Space
     result.map{ |rental| Space.new(space_id: rental['id'], user_id: rental['user_id'], price: rental['price'], headline: rental['headline'], description: rental['description']) }
   end
 
+  def self.make_available(space_id:, start_date:, end_date:) # currently implementing dates to be passed as strings in format "yyyy/mm/dd" can change if needed
+    DatabaseConnection.query("INSERT INTO availability (space_id, availability_start, availability_end)
+                              VALUES (#{space_id}, '#{start_date}', '#{end_date}');")
+  end
+
+  def self.open_dates(space_id:)
+    owner_dates = Space.owner_dates(space_id: space_id)
+    booked_dates = Space.booked_dates(space_id: space_id)
+    open_dates = owner_dates.select {|day| !booked_dates.include?(day) }
+  end
+
+  private
+  def self.clean_date(database_date)
+    date_array = database_date.to_s.split("-")
+    Time.new(date_array[0].to_i, date_array[1].to_i, date_array[2].to_i)
+  end
+
+  def self.owner_dates(space_id:)
+    owner_day_array = self.build_date_array(DatabaseConnection.query("SELECT * FROM availability;"))
+    owner_day_array.sort!
+  end
+
+  def self.booked_dates(space_id:)
+    booked_day_array = self.build_date_array_alt(DatabaseConnection.query("SELECT booking_start, booking_end
+                                          FROM orders WHERE space_id = #{space_id};"))
+    booked_day_array.sort!
+  end
+
+  def self.build_date_array(db_object)
+    day_array = []
+    db_object.each do |row|
+      current_day = Space.clean_date(row["availability_start"])
+      end_day = Space.clean_date(row["availability_end"])
+      while current_day != end_day + (60 * 60 * 24)
+        day_array << current_day
+        current_day += (60 * 60 * 24)
+      end
+    end
+    day_array
+  end
+
+  def self.build_date_array_alt(db_object) # nb this should probably be deleted, but will need to change column names in space and order tables to be the same
+    day_array = []
+    db_object.each do |row|
+      current_day = Space.clean_date(row["booking_start"])
+      end_day = Space.clean_date(row["booking_end"])
+      while current_day != end_day + (60 * 60 * 24)
+        day_array << current_day
+        current_day += (60 * 60 * 24)
+      end
+    end
+    day_array
+  end
+
 end
