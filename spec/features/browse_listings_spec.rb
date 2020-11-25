@@ -2,8 +2,9 @@ require 'capybara/rspec'
 require 'space'
 
 feature "browse listings" do
-  let(:space) {double :space, headline: "Phwoar, what a listing", price: 6000}
-  let(:space2) {double :space2, headline: "Another listing omg", price: 7000}
+  let(:space) { double :space, headline: "Phwoar, what a listing", price: 6000 }
+  let(:space2) { double :space2, headline: "Another listing omg", price: 7000 }
+
   scenario "there are no listings" do
     visit '/spaces'
     expect(page).to have_content "There are no listings"
