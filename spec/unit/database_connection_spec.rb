@@ -12,7 +12,7 @@ describe DatabaseConnection do
   describe '.connection' do
     it 'connection is persisted' do
       connection = DatabaseConnection.setup('bnb_test')
-      expect(DatabaseConnection.connection).to eq connection 
+      expect(DatabaseConnection.connection).to eq connection
     end
   end
 
