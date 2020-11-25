@@ -33,7 +33,7 @@ describe Space do
       @test_user = User.create(username: "testy", password: "123password", email: "testymctesterson@test.org")
     end
 
-    it ".create adds one user to database after calling" do
+    it ".create adds one space to database after calling" do
       expect { Space.create(user_id: @test_user.user_id, price: 15000, headline: "Amazing space", description: "Come stay in our place for kinda cheaps")}.to change{ DatabaseConnection.query("SELECT * FROM spaces").map{|e| e}.length }.by(1)
     end
 
@@ -63,6 +63,11 @@ describe Space do
         expect(Space.all[0].headline).to eq @test_space1.headline
         expect(Space.all[0].description).to eq @test_space1.description
         expect(Space.all.length).to eq 2
+      end
+
+      it '.delete(space_id) deletes a space from the table' do
+        Space.delete(space_id: @test_space1.space_id)
+        expect(Space.all.length).to eq(0)
       end
 
       it "Inserts into availability table where .make_available called" do

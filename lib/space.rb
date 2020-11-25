@@ -24,6 +24,10 @@ class Space
     result.map{ |rental| Space.new(space_id: rental['id'], user_id: rental['user_id'], price: rental['price'], headline: rental['headline'], description: rental['description']) }
   end
 
+  def self.delete(space_id: )
+    DatabaseConnection.query("DELETE FROM spaces WHERE id = #{space_id};")
+  end
+
   def self.make_available(space_id:, start_date:, end_date:) # currently implementing dates to be passed as strings in format "yyyy/mm/dd" can change if needed
     DatabaseConnection.query("INSERT INTO availability (space_id, availability_start, availability_end)
                               VALUES (#{space_id}, '#{start_date}', '#{end_date}');")
@@ -51,6 +55,7 @@ class Space
                                           FROM orders WHERE space_id = #{space_id};"))
     booked_day_array.sort!
   end
+  # Look into whether this should reference space_id or ID. 
 
   def self.build_date_array(db_object)
     day_array = []
