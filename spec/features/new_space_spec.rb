@@ -34,6 +34,5 @@ feature 'new space' do
     expect(page).to have_content(/Test Property/)
     expect(page).to have_content(/Lovely property/)
     expect(page).to have_content(/£69/)
-
   end
 end
