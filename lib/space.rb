@@ -47,7 +47,7 @@ class Space
   end
 
   def self.booked_dates(space_id:)
-    booked_day_array = self.build_date_array_alt(DatabaseConnection.query("SELECT booking_start, booking_end
+    booked_day_array = self.build_date_array(DatabaseConnection.query("SELECT booking_start, booking_end
                                           FROM orders WHERE space_id = #{space_id};"))
     booked_day_array.sort!
   end
@@ -55,8 +55,8 @@ class Space
   def self.build_date_array(db_object)
     day_array = []
     db_object.each do |row|
-      current_day = Space.clean_date(row["availability_start"])
-      end_day = Space.clean_date(row["availability_end"])
+      current_day = Space.starting_day(row)
+      end_day = Space.ending_day(row)
       while current_day != end_day + (60 * 60 * 24)
         day_array << current_day
         current_day += (60 * 60 * 24)
@@ -65,17 +65,33 @@ class Space
     day_array
   end
 
-  def self.build_date_array_alt(db_object) # nb this should probably be deleted, but will need to change column names in space and order tables to be the same
-    day_array = []
-    db_object.each do |row|
-      current_day = Space.clean_date(row["booking_start"])
-      end_day = Space.clean_date(row["booking_end"])
-      while current_day != end_day + (60 * 60 * 24)
-        day_array << current_day
-        current_day += (60 * 60 * 24)
-      end
+  # def self.build_date_array_alt(db_object) # nb this should probably be deleted, but will need to change column names in space and order tables to be the same
+  #   day_array = []
+  #   db_object.each do |row|
+  #     current_day = User.starting
+  #     end_day = Space.clean_date(row["booking_end"])
+  #     while current_day != end_day + (60 * 60 * 24)
+  #       day_array << current_day
+  #       current_day += (60 * 60 * 24)
+  #     end
+  #   end
+  #   day_array
+  # end
+
+  def self.starting_day(hash)
+    if hash.key?("availability_start")
+      return Space.clean_date(hash["availability_start"])
+    else
+      return Space.clean_date(hash["booking_start"])
     end
-    day_array
+  end
+
+  def self.ending_day(hash)
+    if hash.key?("availability_end")
+      return Space.clean_date(hash["availability_end"])
+    else
+      return Space.clean_date(hash["booking_end"])
+    end
   end
 
 end
