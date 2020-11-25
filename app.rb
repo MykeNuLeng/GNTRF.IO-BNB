@@ -14,12 +14,6 @@ class Controller < Sinatra::Base
     erb(:login_or_register)
   end
 
-  # test, remove later 
-  get '/logged-in-test' do
-    session[:user] = true
-    erb(:home)
-  end
-
   post '/session/new' do
     session[:user] = User.authenticate(
       email: params[:email],
