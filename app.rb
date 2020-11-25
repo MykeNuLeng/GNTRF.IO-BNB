@@ -11,7 +11,7 @@ class Controller < Sinatra::Base
 
   get '/' do
     redirect('/spaces') if session[:user]
-    
+
     @state = 'login'
     erb(:login_or_register)
   end
@@ -53,5 +53,20 @@ class Controller < Sinatra::Base
   get '/spaces' do
     @spaces = Space.all
     erb(:spaces)
+  end
+
+  get '/spaces/new' do
+    erb :'spaces/new'
+  end
+
+  post '/spaces/new' do
+    Space.create(
+      user_id: session[:user].user_id,
+      price: params[:price].to_i * 100,
+      headline: params[:headline],
+      description: params[:description]
+    )
+
+    redirect('/spaces')
   end
 end

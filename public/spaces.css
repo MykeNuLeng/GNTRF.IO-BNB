@@ -12,12 +12,15 @@ body {
 
 .nav-bar {
     width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 9;
+    transition: top 0.3s;
 }
 
 .logo {
   position: absolute;
   display: inline;
-
   top: 5px;
   left: 5px;
 }
@@ -48,7 +51,7 @@ button:hover {
 }
 
 .container {
-    margin-top: 200px;
+    margin-top: 150px;
 }
 
 .no-listings {

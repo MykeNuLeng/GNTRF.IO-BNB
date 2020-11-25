@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GNTRF.IO - Home</title>
+    <script src="https://kit.fontawesome.com/0a9ff46f27.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="nav-bar">
+      <div class="logo">
+        <a href="/"><img name="logo" src="../images/logo.png"></a>
+      </div>
+      <div class="nav-buttons">
+        <form>
+        <button formaction="/spaces/new">NEW LISTING</button>
+        <button>PROFILE</button>
+        <%if session[:user]%>
+        <button formaction="/sessions/end">LOG OFF</button>
+        <%else%>
+        <button>LOG IN</button>
+        <%end%>
+        </form>
+      </div>
+    </div>
+    <%if flash[:notice]%>
+    <div class="alert">
+      <%= flash[:notice]%>
+    </div>
+    <% end%>
+    <div class="main-box">
+    <div class="user-input">
+    <form name="new-space" action="/spaces/new" method='post'>
+      <div class="headline-field">
+      <i class="fas fa-feather"></i>
+      <input type="text" name="headline" placeholder="Headline">
+      </div>
+      <div class="decription-field">
+      <i class="fas fa-feather"></i>
+      <input type="text" name="description" placeholder="Description">
+      </div>
+      <div class="price-field">
+      <i class="fas fa-pound-sign"></i>
+      <input type="text" name="price" placeholder="Price">
+      </div>
+      <div class="photo-field">
+      <i class="fas fa-camera"></i>
+      <input type="text" name="photo" placeholder="Photo">
+      </div>
+      <button class="submit-button">Submit</button>
+    </form>
+    </div>
+    </div>
+  </body>
+  </html>
