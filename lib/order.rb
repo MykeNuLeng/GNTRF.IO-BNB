@@ -25,7 +25,7 @@ class Order
   def self.all_pending
     result = DatabaseConnection.query("SELECT * FROM orders WHERE confirmed = 'false';")
     result.map { |listing|
-      Order.new(order_id: listing['id'], space_id: listing['space_id'], user_id: listing['user_id'], booking_start: listing['booking_start'], booking_end: listing['booking_end'], confirmed: listing['confirmed']) }
+      Order.new(order_id: listing['id'], space_id: listing['space_id'], user_id: listing['user_id'], booking_start: listing['booking_start'], booking_end: listing['booking_end'], confirmed: false) }
   end
 
   def self.pending_by_renter_id(user_id:)
@@ -55,13 +55,32 @@ class Order
 
   # working here end
 
+  def self.order_history_by_renter_id(user_id: )
+    result = DatabaseConnection.query("SELECT * FROM orders WHERE user_id = #{user_id};")
+    result.map { |listing|
+      Order.new(order_id: listing['id'], space_id: listing['space_id'], user_id: listing['user_id'], booking_start: listing['booking_start'], booking_end: listing['booking_end'], confirmed: Order.clean_boolean(listing['confirmed'])) }
+  end
+
   def self.confirm(order_id:)
     DatabaseConnection.query("UPDATE orders SET confirmed = true WHERE id = '#{order_id}';")
   end
+
+  def self.reject(order_id:)
+    DatabaseConnection.query("DELETE FROM orders WHERE id = #{order_id};")
+  end
+
+
 
   private
   def clean_date(database_date)
     date_array = database_date.to_s.split("-")
     Time.new(date_array[0].to_i, date_array[1].to_i, date_array[2].to_i)
   end
+
+  def self.clean_boolean(database_value)
+    return true if database_value == "t"
+    return false if database_value == "f"
+  end
+
+
 end

@@ -58,15 +58,27 @@ describe Order do
         expect(@test_order.confirmed).to eq(false)
       end
 
-  #     it 'Returns an array of customer orders when .customer_order_history called' do
-  #       test_order2 = Order.create(space_id: test_space.space_id, user_id: order_owner.user_id, booking_start: "2021/05/19", booking_end: "2021/05/21")
-  #       Order.confirm(order_id: test_order.order_id)
-  #       expect(Order.customer_order_history(order_owner.user_id).length).to eq 2
-  #   end
+      it 'Returns an array of customer orders when .order_history_by_renter_id called' do
+        test_order2 = Order.create(space_id: @test_space.space_id, user_id: @order_owner.user_id, booking_start: "2021/05/19", booking_end: "2021/05/21")
+        Order.confirm(order_id: @test_order.order_id)
+        result = Order.order_history_by_renter_id(user_id: @order_owner.user_id)
+        expect(result.length).to eq 2
+        expect(result).to be_instance_of(Array)
+        expect(result.first.space_id).to eq(@test_space.space_id)
+        expect(result.first.user_id).to eq(@order_owner.user_id)
+        expect(result.first.booking_start.strftime("%Y-%m-%d")).to eq("2021-05-19")
+        expect(result.first.booking_end.strftime("%Y-%m-%d")).to eq("2021-05-21")
+        expect(result.first.confirmed).to eq(false)
+      end
+      
 
       it 'changes something unconfirmed to confirmed when .confirm called' do
         Order.confirm(order_id: @test_order.order_id)
         expect(Order.all_pending.empty?).to eq true
+      end
+
+      it 'deletes order from orders table when rejected' do
+        expect{ Order.reject(order_id: @test_order.order_id) }.to change{ (DatabaseConnection.query("SELECT * FROM orders;")).cmd_tuples }.by(-1)
       end
 
       it '.all_pending returns an array with pending orders' do
