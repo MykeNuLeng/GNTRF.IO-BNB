@@ -20,6 +20,20 @@ feature 'new space' do
     expect(page).to have_button 'NEW LISTING'
     expect(page).to have_field('headline')
     expect(page).to have_field('description')
+    expect(page).to have_field('price')
     expect(page).to have_field('photo')
+  end
+
+  scenario "filling in said form will create a new space" do
+    fill_in('headline', with: 'Test Property')
+    fill_in('description', with: 'Lovely property')
+    fill_in('price', with: '69')
+    fill_in('photo', with: 'https://i.imgur.com/8KnWbIX.mp4')
+    click_button('Submit')
+    expect(current_path).to eq('/spaces')
+    expect(page).to have_content(/Test Property/)
+    expect(page).to have_content(/Lovely property/)
+    expect(page).to have_content(/£69/)
+
   end
 end

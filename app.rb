@@ -58,4 +58,15 @@ class Controller < Sinatra::Base
   get '/spaces/new' do
     erb :'spaces/new'
   end
+
+  post '/spaces/new' do
+    Space.create(
+      user_id: session[:user].user_id,
+      price: params[:price].to_i * 100,
+      headline: params[:headline],
+      description: params[:description]
+    )
+
+    redirect('/spaces')
+  end
 end
