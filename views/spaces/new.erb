@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GNTRF.IO - Home</title>
+    <link rel="stylesheet" href="../new-spaces.css">
     <script src="https://kit.fontawesome.com/0a9ff46f27.js" crossorigin="anonymous"></script>
   </head>
   <body>
@@ -18,7 +19,7 @@
         <%if session[:user]%>
         <button formaction="/sessions/end">LOG OFF</button>
         <%else%>
-        <button>LOG IN</button>
+        <button formaction="/">LOG IN</button>
         <%end%>
         </form>
       </div>
@@ -31,23 +32,22 @@
     <div class="main-box">
     <div class="user-input">
     <form name="new-space" action="/spaces/new" method='post'>
+      <h1>CREATE A NEW SPACE</h1>
       <div class="headline-field">
-      <i class="fas fa-feather"></i>
-      <input type="text" name="headline" placeholder="Headline">
+      <textarea maxlength="140" name="headline" id="headline" placeholder="Headline"></textarea>
       </div>
       <div class="decription-field">
-      <i class="fas fa-feather"></i>
-      <input type="text" name="description" placeholder="Description">
+      <textarea maxlength="400" id="description" name="description" placeholder="Description"></textarea>
       </div>
       <div class="price-field">
       <i class="fas fa-pound-sign"></i>
-      <input type="text" name="price" placeholder="Price">
+      <input type="text" id="price" name="price" placeholder="Price">
       </div>
       <div class="photo-field">
       <i class="fas fa-camera"></i>
-      <input type="text" name="photo" placeholder="Photo">
+      <input type="text" id="photo" name="photo" placeholder="Photo URL">
       </div>
-      <button class="submit-button">Submit</button>
+      <button class="submit-button">SUBMIT</button>
     </form>
     </div>
     </div>

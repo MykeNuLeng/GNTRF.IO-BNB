@@ -29,10 +29,18 @@ feature 'new space' do
     fill_in('description', with: 'Lovely property')
     fill_in('price', with: '69')
     fill_in('photo', with: 'https://i.imgur.com/8KnWbIX.mp4')
-    click_button('Submit')
+    click_button('SUBMIT')
     expect(current_path).to eq('/spaces')
     expect(page).to have_content(/Test Property/)
     expect(page).to have_content(/Lovely property/)
     expect(page).to have_content(/£69/)
+  end
+end
+
+feature "link to login page" do
+  scenario "it sends you back to log in" do
+    visit '/spaces/new'
+    click_button('LOG IN')
+    expect(current_path).to eq('/')
   end
 end

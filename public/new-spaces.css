@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap");
+
+body {
+  background-color: #7ec4cf;
+  background-image: url("./images/gntrf-background.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 105%;
+  background-attachment: fixed;
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+    font-weight: 375;
+    text-align: left;
+    color: white;
+    margin-left: 65px;
+    font-size: 40px;
+}
+
+textarea {
+    font-family: "Roboto", sans-serif !important;
+    font-weight: 200;
+    padding-top: 15px;
+    padding-right: 20px;
+    resize: none;
+}
+
+input {
+    font-size: 17.5px;
+    font-weight: 200;
+}
+
+.logo {
+  position: absolute;
+  display: inline;
+  top: 5px;
+  left: 5px;
+}
+
+.nav-buttons {
+  position: absolute;
+  display: inline;
+  right: 35px;
+  top: 25px;
+}
+
+button {
+  background: #7ec4cf;
+  border: 1px solid #52b2cf;
+  border-radius: 33.5px;
+  font-size: 32px;
+  color: white;
+  padding: 7.5px 25px 7.5px 25px;
+}
+
+.nav-buttons button {
+  margin-right: 15px;
+}
+
+button:hover {
+  cursor: pointer;
+  background: #52b2cf;
+}
+
+.main-box {
+  margin-top: 150px;
+}
+
+.user-input {
+  opacity: 0.9;
+  background: #d4afb9;
+  border: 2px solid #d1cfe2;
+  border-radius: 29px;
+  width: 40%;
+  height: 45em;
+  margin: auto;
+}
+
+.user-input input, textarea {
+    background: #D1CFE2;
+    border: 1px solid #9CADCE;
+    border-radius: 33.5px;
+    padding-left: 45px;
+    outline: none;
+    margin-bottom: 40px;
+}
+
+.user-input form {
+    text-align: center;
+}
+
+.user-input i {
+    position: relative;
+    left: 40px;
+}
+
+#headline {
+    width: 580px;
+    height: 80px;
+}
+
+#description {
+    width: 580px;
+    height: 135px;
+}
+
+#photo, #price {
+    width: 600px;
+    height: 60px;
+}
+
+.submit-button {
+    position: relative;
+    bottom: 20px;
+}
