@@ -49,11 +49,7 @@ class Controller < Sinatra::Base
   end
 
   get '/spaces' do
-    "#{session[:user].username}"
-  end
-
-  get '/listings' do
-    @listings = Space.all
-    erb(:listings)
+    @spaces = Space.all
+    erb(:spaces)
   end
 end
