@@ -55,7 +55,7 @@ class Space
                                           FROM orders WHERE space_id = #{space_id};"))
     booked_day_array.sort!
   end
-  # Look into whether this should reference space_id or ID. 
+
 
   def self.build_date_array(db_object)
     day_array = []
