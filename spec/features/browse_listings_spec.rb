@@ -2,28 +2,27 @@ require 'capybara/rspec'
 require 'space'
 
 feature "browse listings" do
-  let(:space) {double :space, headline: "Phwoar, what a listing", price: 6000}
-  let(:space2) {double :space2, headline: "Another listing omg", price: 7000}
   scenario "there are no listings" do
-    visit '/listings'
-    expect(page).to have_content "There are no listings"
+    visit '/spaces'
+    expect(page).to have_content "NO CURRENT LISTINGS!"
   end
 
-  scenario "displays the headline and price of a list of one Listing" do
-    class_double = double('Space')
-    visit '/listings'
-    allow(Space).to receive(:all_spaces).and_return([space])
-    expect(page).to have_content("Phwoar, what a listing")
-    expect(page).to have_content("£60")
+  scenario "displays the headline and price of a list of one space" do
+    test_user = User.create(username: "testy", password: "123password", email: "testymctesterson@test.org")
+    Space.create(user_id: test_user.user_id, price: 5400, headline: "Kinda alright space", description: "Really cheap, really damp!")
+    visit '/spaces'
+    expect(page).to have_content("Kinda alright space")
+    expect(page).to have_content("£54")
   end
 
-  scenario "displays the healine and price of a list of two Listing" do
-    class_double = double('Space')
-    visit '/listings'
-    allow(Space). to receive(:all_spaces).and_return([space, space2])
-    expect(page).to have_content("Phwoar, what a listing")
-    expect(page).to have_content("£60")
-    expect(page).to have_content("Another listing omg")
-    expect(page).to have_content("£70")
+  scenario "displays the description of a list of two spaces" do
+    test_user = User.create(username: "testy", password: "123password", email: "testymctesterson@test.org")
+    Space.create(user_id: test_user.user_id, price: 5400, headline: "Kinda alright space", description: "Really cheap, really damp!")
+    Space.create(user_id: test_user.user_id, price: 6900, headline: "Test test test", description: "Lovely property")
+    visit '/spaces'
+    expect(page).to have_content("Really cheap, really damp!")
+    expect(page).to have_content("£54")
+    expect(page).to have_content("Lovely property")
+    expect(page).to have_content("£69")
   end
 end

@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;500&display=swap");
+
+body {
+  background-color: #7ec4cf;
+  background-image: url("./images/gntrf-background.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 105%;
+  background-attachment: fixed;
+  font-family: "Roboto", sans-serif;
+}
+
+.nav-bar {
+    width: 100%;
+}
+
+.logo {
+  position: absolute;
+  display: inline;
+
+  top: 5px;
+  left: 5px;
+}
+
+.nav-buttons {
+  position: absolute;
+  display: inline;
+  right: 35px;
+  top: 25px;
+}
+
+button {
+  background: #7ec4cf;
+  border: 1px solid #52b2cf;
+  border-radius: 33.5px;
+  font-size: 32px;
+  color: white;
+  padding: 7.5px 25px 7.5px 25px;
+}
+
+.nav-buttons button {
+    margin-right: 15px;
+}
+
+button:hover {
+  cursor: pointer;
+  background: #52b2cf;
+}
+
+.container {
+    margin-top: 200px;
+}
+
+.no-listings {
+    background: #52B2CF;
+    border: 1px solid #D4AFB9;
+    border-radius: 33.5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 40px;
+    width: 628px;
+    margin: auto;
+    font-size: 32px;
+    color: #FFFFFF;
+    text-align: center;
+    font-weight: 500;
+    position: relative;
+    top: 5em;
+}
+
+.space {
+    opacity: 0.9;
+    background: #D4AFB9;
+    border: 2px solid #D1CFE2;
+    border-radius: 29px;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 100px;
+    min-height: 150px;
+    display: flexbox;
+    object-fit: contain;
+}
+
+.top-of-space {
+    margin-top: 15px;
+}
+
+.space .image {
+    float: left;
+    margin-top: 20px;
+    margin-left: 5px;
+    margin-right: 15px;
+}
+
+.headline {
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 32px;
+    color: #FFFFFF;
+    float: left;
+}
+
+.description {
+    font-weight: 200;
+    font-size: 20px;
+    color: #000000;
+    text-align: justify;
+}
+
+.price {
+    font-weight: 400;
+    font-size: 32px;
+    color: #FFFFFF;
+    float: right;
+    margin-right: 25px;
+}
+
+.space-content {
+    padding-left: 220px;
+}

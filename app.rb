@@ -14,12 +14,6 @@ class Controller < Sinatra::Base
     erb(:login_or_register)
   end
 
-  # test, remove later 
-  get '/logged-in-test' do
-    session[:user] = true
-    erb(:home)
-  end
-
   post '/session/new' do
     session[:user] = User.authenticate(
       email: params[:email],
@@ -49,11 +43,7 @@ class Controller < Sinatra::Base
   end
 
   get '/spaces' do
-    "#{session[:user].username}"
-  end
-
-  get '/listings' do
-    @listings = Space.all
-    erb(:listings)
+    @spaces = Space.all
+    erb(:spaces)
   end
 end

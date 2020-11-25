@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GNTRF.IO - Spaces</title>
+    <link rel="stylesheet" href="../spaces.css">
+  </head>
+  <body>
+    <div class="nav-bar">
+      <div class="logo">
+        <img src="../images/logo.png">
+      </div>
+      <div class="nav-buttons">
+        <button>NEW LISTING</button>
+        <button>PROFILE</button>
+        <%if session[:user]%>
+        <button>LOG OFF</button>
+        <%else%>
+        <button>LOG IN</button>
+        <%end%>
+      </div>
+    </div>
+    <div class="container">
+
+    <% if @spaces.empty? %>
+    <h3 class="no-listings">NO CURRENT LISTINGS!</h3>
+    <% else%>
+    <% @spaces.each do |space|%>
+    <div class="space">
+      <span class="image">
+        <img src="https://via.placeholder.com/200x100">
+      </span>
+      <div class="top-of-space">
+      <span class="headline">
+      <%=space.headline%>
+      </span>
+      <span class="price">
+      £<%=space.price / 100%> per night
+      </span>
+      </div>
+      <br>
+      <br>
+      <br>
+      <div class="bottom-of-space">
+      <span class="description">
+      <%=space.description%>
+      </span>
+      </div>
+      
+    </div>
+    <%end%>
+    <%end%>
+    </div>
+  </body>
+  </html>

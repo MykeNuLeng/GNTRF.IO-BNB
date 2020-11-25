@@ -43,7 +43,6 @@ feature "Login/Register page" do
     fill_in('password', with: 'test123')
     click_button('LOGIN')
     expect(current_path).to eq '/spaces'
-    expect(page).to have_content(/brian/)
   end
 
   scenario 'non-user cannot sign in' do
