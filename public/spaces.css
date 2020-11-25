@@ -25,18 +25,18 @@ body {
 .nav-buttons {
   position: absolute;
   display: inline;
-  right: 5px;
-  top: 5px;
+  right: 35px;
+  top: 25px;
 }
 
-button {
+.nav-buttons button {
   background: #7ec4cf;
   border: 1px solid #52b2cf;
   border-radius: 33.5px;
   font-size: 32px;
   color: white;
   padding: 7.5px 25px 7.5px 25px;
-  margin-top: 90px;
+  margin-right: 15px;
 }
 
 button:hover {
@@ -62,5 +62,5 @@ button:hover {
     text-align: center;
     font-weight: 500;
     position: relative;
-    top: 2em;
+    top: 5em;
 }
