@@ -76,9 +76,13 @@ button:hover {
     width: 80%;
     margin: auto;
     margin-bottom: 100px;
-    height: 150px;
+    min-height: 150px;
     display: flexbox;
     object-fit: contain;
+}
+
+.top-of-space {
+    margin-top: 15px;
 }
 
 .space .image {
@@ -108,6 +112,7 @@ button:hover {
     font-size: 32px;
     color: #FFFFFF;
     float: right;
+    margin-right: 25px;
 }
 
 .space-content {
