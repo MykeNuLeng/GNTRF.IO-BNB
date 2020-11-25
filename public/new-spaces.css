@@ -11,7 +11,11 @@ body {
 }
 
 h1 {
-    font-weight: 200;
+    font-weight: 375;
+    text-align: left;
+    color: white;
+    margin-left: 65px;
+    font-size: 40px;
 }
 
 textarea {
@@ -79,7 +83,7 @@ button:hover {
     border-radius: 33.5px;
     padding-left: 45px;
     outline: none;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 }
 
 .user-input form {
