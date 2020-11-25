@@ -10,6 +10,8 @@ class Controller < Sinatra::Base
   register Sinatra::Flash
 
   get '/' do
+    redirect('/spaces') if session[:user]
+    
     @state = 'login'
     erb(:login_or_register)
   end

@@ -53,4 +53,9 @@ feature "Login/Register page" do
     expect(current_path).to eq '/'
     expect(page).to have_content(/EMAIL OR PASSWORD INVALID/)
   end
+
+  scenario 'logo links to home page' do
+    visit '/'
+    expect(page).to have_link(href: '/')
+  end
 end
