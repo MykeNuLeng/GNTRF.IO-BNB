@@ -44,6 +44,7 @@ class Controller < Sinatra::Base
 
   get '/spaces' do
     @spaces = Space.all
+    p @spaces
     erb(:spaces)
   end
 end

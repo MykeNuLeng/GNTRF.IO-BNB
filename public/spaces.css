@@ -29,14 +29,17 @@ body {
   top: 25px;
 }
 
-.nav-buttons button {
+button {
   background: #7ec4cf;
   border: 1px solid #52b2cf;
   border-radius: 33.5px;
   font-size: 32px;
   color: white;
   padding: 7.5px 25px 7.5px 25px;
-  margin-right: 15px;
+}
+
+.nav-buttons button {
+    margin-right: 15px;
 }
 
 button:hover {
@@ -63,4 +66,39 @@ button:hover {
     font-weight: 500;
     position: relative;
     top: 5em;
+}
+
+.space {
+    opacity: 0.9;
+    background: #D4AFB9;
+    border: 2px solid #D1CFE2;
+    border-radius: 29px;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 100px;
+    height: 150px;
+}
+
+.headline {
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 32px;
+    color: #FFFFFF;
+}
+
+.description {
+    font-weight: 200;
+    font-size: 20px;
+    color: #000000;
+    text-align: justify;
+}
+
+.price {
+    font-weight: 400;
+    font-size: 32px;
+    color: #FFFFFF;
+}
+
+.space-content {
+    padding-left: 220px;
 }
