@@ -19,7 +19,7 @@
     </div>
     <div class="container">
 
-    <% if @spaces.nil? %>
+    <% if @spaces.empty? %>
     <h3 class="no-listings">NO CURRENT LISTINGS!</h3>
     <% else%>
     <% @spaces.each do |space|%>
