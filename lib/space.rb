@@ -65,19 +65,6 @@ class Space
     day_array
   end
 
-  # def self.build_date_array_alt(db_object) # nb this should probably be deleted, but will need to change column names in space and order tables to be the same
-  #   day_array = []
-  #   db_object.each do |row|
-  #     current_day = User.starting
-  #     end_day = Space.clean_date(row["booking_end"])
-  #     while current_day != end_day + (60 * 60 * 24)
-  #       day_array << current_day
-  #       current_day += (60 * 60 * 24)
-  #     end
-  #   end
-  #   day_array
-  # end
-
   def self.starting_day(hash)
     if hash.key?("availability_start")
       return Space.clean_date(hash["availability_start"])
