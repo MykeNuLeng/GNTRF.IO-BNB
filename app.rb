@@ -57,6 +57,8 @@ class Controller < Sinatra::Base
   end
 
   get '/spaces/new' do
+    redirect('/') unless session[:user]
+
     erb :'spaces/new'
   end
 
@@ -72,6 +74,8 @@ class Controller < Sinatra::Base
   end
 
   get '/profile' do
+    redirect('/') unless session[:user]
+
     @orders = Order.order_history_by_renter_id(user_id: session[:user].user_id)
     erb(:profile)
   end
