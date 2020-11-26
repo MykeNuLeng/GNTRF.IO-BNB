@@ -13,7 +13,7 @@ class User
 
   def self.create(username:, password:, email:)
     return false unless User.valid_username?(username: username)
-    # return false if password too short
+    return false unless User.valid_password?(password: password)
     # return false if email invalid or not unique
     encrypted_password = BCrypt::Password.create(password)
     result = DatabaseConnection.query("INSERT INTO users (username, password, email)
@@ -41,6 +41,11 @@ class User
     return false if username.length < 5
     return false if !!(username =~ /[@€!£#$%^&*']/)
     return false if ((DatabaseConnection.query("SELECT username FROM users;")).map{|e| e["username"].downcase}).include?(username.downcase)
+    true
+  end
+
+  def self.valid_password?(password:)
+    return false if !(password =~ /^(?=.*\d)(?=.*([a-z]))(?=.*([A-Z]))([\x20-\x7E]){8,}$/ )
     true
   end
 

@@ -30,7 +30,7 @@ describe Space do
 
     before do
       # need test_user for valid user_id
-      @test_user = User.create(username: "testington", password: "123password", email: "testymctesterson@test.org")
+      @test_user = User.create(username: "testington", password: "123Password", email: "testymctesterson@test.org")
     end
 
     it ".create adds one space to database after calling" do

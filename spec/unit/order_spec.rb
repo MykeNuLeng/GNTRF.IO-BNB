@@ -32,8 +32,8 @@ describe Order do
 
     before do
       # need test users for valid user_id
-      @space_owner = User.create(username: "testy1", password: "123password", email: "testymctesterson1@test.org")
-      @order_owner = User.create(username: "testy2", password: "123password", email: "testymctesterson2@test.org")
+      @space_owner = User.create(username: "testy1", password: "123Password", email: "testymctesterson1@test.org")
+      @order_owner = User.create(username: "testy2", password: "123Password", email: "testymctesterson2@test.org")
       # need test space for valid space_id
       @test_space = Space.create(user_id: @space_owner.user_id, price: 2500, headline: "Livable space", description: "Rated \"not yet dangerous\" by official bodies")
     end
@@ -109,9 +109,9 @@ describe Order do
 
     before do
       # test user 1 will be searched landlord, test user 2 needed to prove orders on his listings not shown, and test user orderer to own the orders
-      @test_user1 = User.create(username: "testy1", password: "123password", email: "testymctesterson1@test.org")
-      @test_user2 = User.create(username: "testy2", password: "123password", email: "testymctesterson2@test.org")
-      @test_user_orderer = User.create(username: "orderman", password: "123password", email: "order@chaos.org")
+      @test_user1 = User.create(username: "testy1", password: "123Password", email: "testymctesterson1@test.org")
+      @test_user2 = User.create(username: "testy2", password: "123Password", email: "testymctesterson2@test.org")
+      @test_user_orderer = User.create(username: "orderman", password: "123Password", email: "order@chaos.org")
       # test space 1 owned by our searched landlord, test space 2 used by unsearched
       @test_space1 = Space.create(user_id: @test_user1.user_id, price: 1000, headline: "Owned by test_user1", description: "Owned by test_user1 long")
       @test_space2 = Space.create(user_id: @test_user2.user_id, price: 1000, headline: "Owned by test_user2", description: "Owned by test_user2 long")
