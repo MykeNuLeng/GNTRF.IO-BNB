@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GNTRF.IO - Spaces</title>
+    <link rel="stylesheet" href="../profile.css">
+  </head>
+  <body>
+    <div class="nav-bar" id="nav-bar">
+      <div class="logo">
+        <a href="/"><img name="logo" src="../images/logo.png"></a>
+      </div>
+      <div class="nav-buttons">
+        <form>
+        <%if session[:user]%>
+        <button formaction="/spaces/new">NEW LISTING</button>
+        <button formaction="/profile">PROFILE</button>
+        <button formaction="/sessions/end">LOG OFF</button>
+        <%else%>
+        <button formaction="/">LOG IN</button>
+        <%end%>
+        </form>
+      </div>
+    </div>
+    <div class="container">
+    <span class="profile-box-links">
+    <p class="selected">Bookings</p>
+    <a href="#">Lettings</a>
+    <a href="#">Spaces</a>
+    </span>
+    <hr class="box-line">
+    <div class="objects-in-list">
+    <h1 class="current-header">MY BOOKINGS</h1>
+    <h2 class="no-info">No bookings to show yet!</h2>
+    </div>
+    </div>
+    </div>
+  </body>
+  </html>
