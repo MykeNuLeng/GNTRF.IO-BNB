@@ -14,7 +14,7 @@ h1 {
     font-weight: 375;
     text-align: left;
     color: white;
-    margin-left: 65px;
+    margin-left: 45px;
     font-size: 40px;
 }
 
@@ -72,7 +72,7 @@ button:hover {
   background: #d4afb9;
   border: 2px solid #d1cfe2;
   border-radius: 29px;
-  width: 40%;
+  width: 700px;
   height: 45em;
   margin: auto;
 }
