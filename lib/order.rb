@@ -15,6 +15,8 @@ class Order
     @confirmed = confirmed
   end
 
+  # Create
+
   def self.create(space_id:, user_id:, booking_start:, booking_end:)
     result = DatabaseConnection.query("INSERT INTO orders (space_id, user_id, booking_start, booking_end)
                               VALUES ('#{space_id}', '#{user_id}', '#{booking_start}', '#{booking_end}')
@@ -22,10 +24,20 @@ class Order
     Order.new(order_id: result[0]["id"], space_id: space_id, user_id: user_id, booking_start: result[0]["booking_start"], booking_end: result[0]["booking_end"], confirmed: false)
   end
 
+  # Read
+
   def self.all_pending
     result = DatabaseConnection.query("SELECT * FROM orders WHERE confirmed = 'false';")
     result.map { |listing|
       Order.new(order_id: listing['id'], space_id: listing['space_id'], user_id: listing['user_id'], booking_start: listing['booking_start'], booking_end: listing['booking_end'], confirmed: false) }
+  end
+
+  # Read - renter
+
+  def self.order_history_by_renter_id(user_id: )
+    result = DatabaseConnection.query("SELECT * FROM orders WHERE user_id = #{user_id};")
+    result.map { |listing|
+      Order.new(order_id: listing['id'], space_id: listing['space_id'], user_id: listing['user_id'], booking_start: listing['booking_start'], booking_end: listing['booking_end'], confirmed: Order.clean_boolean(listing['confirmed'])) }
   end
 
   def self.pending_by_renter_id(user_id:)
@@ -36,15 +48,7 @@ class Order
     Order.all_pending.select{ |listing| User.find(user_id: listing.user_id).username == username }
   end
 
-  def self.pending_by_landlord_id(user_id:)
-    Order.order_history_by_landlord_id(user_id: user_id).select{|e| e.confirmed == false}
-  end
-
-  def self.order_history_by_renter_id(user_id: )
-    result = DatabaseConnection.query("SELECT * FROM orders WHERE user_id = #{user_id};")
-    result.map { |listing|
-      Order.new(order_id: listing['id'], space_id: listing['space_id'], user_id: listing['user_id'], booking_start: listing['booking_start'], booking_end: listing['booking_end'], confirmed: Order.clean_boolean(listing['confirmed'])) }
-  end
+   # Read - landlord
 
   def self.order_history_by_landlord_id(user_id: )
     result = DatabaseConnection.query("SELECT spaces.user_id, orders.id, space_id, orders.user_id, booking_start, booking_end, confirmed
@@ -55,15 +59,21 @@ class Order
       Order.new(order_id: listing['id'], space_id: listing['space_id'], user_id: listing['user_id'], booking_start: listing['booking_start'], booking_end: listing['booking_end'], confirmed: Order.clean_boolean(listing['confirmed'])) }
   end
 
+  def self.pending_by_landlord_id(user_id:)
+    Order.order_history_by_landlord_id(user_id: user_id).select{|e| e.confirmed == false}
+  end
+
+  # Update
+
   def self.confirm(order_id:)
     DatabaseConnection.query("UPDATE orders SET confirmed = true WHERE id = '#{order_id}';")
   end
 
+  # Delete
+
   def self.reject(order_id:)
     DatabaseConnection.query("DELETE FROM orders WHERE id = #{order_id};")
   end
-
-
 
   private
   def clean_date(database_date)
