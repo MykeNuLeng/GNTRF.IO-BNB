@@ -43,10 +43,15 @@ class Controller < Sinatra::Base
   end
 
   post '/users/new' do
-    User.create(
+    user = User.create(
       username: params[:username],
       email: params[:email],
       password: params[:password])
+
+    if user == false
+      flash[:notice] = "INVALID FIELD ENTRY"
+      redirect '/users/new'
+    end  
 
     redirect '/'
   end

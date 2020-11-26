@@ -58,4 +58,40 @@ feature "Login/Register page" do
     visit '/'
     expect(page).to have_link(href: '/')
   end
+
+  scenario 'user enters an invalid email for sign up' do
+    visit '/'
+    click_link 'Sign Up'
+    fill_in('email', with: 'nope')
+    fill_in('username', with: 'tests')
+    fill_in('password', with: 'Testlength123')
+    fill_in('confirm-password', with: 'Testlength123')
+    click_button('REGISTER')
+    expect(page).to have_content 'INVALID FIELD ENTRY'
+    expect(current_path).to eq('/users/new')
+  end
+
+  scenario 'user enters an invalid username for sign up' do
+    visit '/'
+    click_link 'Sign Up'
+    fill_in('email', with: 'test@test.com')
+    fill_in('username', with: 'nope')
+    fill_in('password', with: 'Testlength123')
+    fill_in('confirm-password', with: 'Testlength123')
+    click_button('REGISTER')
+    expect(page).to have_content 'INVALID FIELD ENTRY'
+    expect(current_path).to eq('/users/new')
+  end
+
+  scenario 'user enters an invalid password for sign up' do
+    visit '/'
+    click_link 'Sign Up'
+    fill_in('email', with: 'test@test.com')
+    fill_in('username', with: 'tests')
+    fill_in('password', with: 'nope')
+    fill_in('confirm-password', with: 'nope')
+    click_button('REGISTER')
+    expect(page).to have_content 'INVALID FIELD ENTRY'
+    expect(current_path).to eq('/users/new')
+  end
 end
