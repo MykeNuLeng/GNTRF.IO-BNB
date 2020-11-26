@@ -68,7 +68,10 @@ button:hover {
   border-radius: 29px;
   border: solid 2px #d1cfe2;
   background-color: #d4afb9;
+  overflow: hidden;
 }
+
+
 
 .profile-box-links {
   display: flex;
@@ -79,6 +82,8 @@ button:hover {
   font-weight: 300;
   margin: 0;
 }
+
+
 
 .selected {
   font-weight: 500;
@@ -93,6 +98,8 @@ button:hover {
   font-size: 62px;
   font-weight: bold;
   color: #ffffff;
+  margin-left: 25px;
+  margin-bottom: 5px;
 }
 
 .no-info {
@@ -100,5 +107,19 @@ button:hover {
 }
 
 .objects-in-list {
+    overflow-y: scroll;
     padding-left: 25px;
+    height: 70%;
+}
+
+.order {
+  height: 100px;
+  margin: auto;
+  margin-top: 10px;
+  margin-right: 17.5px;
+  padding: 10px 7px 5px 24px;
+  opacity: 0.9;
+  border-radius: 29px;
+  border: solid 2px #d1cfe2;
+  background-color: #9cadce;
 }
