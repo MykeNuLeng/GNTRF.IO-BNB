@@ -82,6 +82,21 @@ class Controller < Sinatra::Base
     redirect('/') unless session[:user]
 
     @orders = Order.order_history_by_renter_id(user_id: session[:user].user_id)
-    erb(:profile)
+    erb :'profile/bookings'
+  end
+
+  get '/profile/lettings' do
+    @lettings = Order.order_history_by_landlord_id(user_id: session[:user].user_id)
+    erb :'profile/lettings'
+  end
+
+  get '/profile/lettings/:id/reject' do
+    Order.reject(order_id: params[:id])
+    redirect '/profile/lettings'
+  end
+
+  get '/profile/lettings/:id/confirm' do
+    Order.confirm(order_id: params[:id])
+    redirect '/profile/lettings'
   end
 end

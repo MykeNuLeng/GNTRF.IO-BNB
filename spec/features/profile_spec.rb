@@ -61,4 +61,11 @@ feature "Profile page" do
     expect(page).to have_button("VIEW")
     expect(page).to have_content("19/04/21 - 21/04/21")
   end
+
+  scenario "user can change to lettings page" do
+    create_account_and_login
+    click_button('PROFILE')
+    click_link('Lettings')
+    expect(current_path).to eq('/profile/lettings')
+  end
 end
