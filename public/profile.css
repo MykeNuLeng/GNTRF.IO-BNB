@@ -122,4 +122,44 @@ button:hover {
   border-radius: 29px;
   border: solid 2px #d1cfe2;
   background-color: #9cadce;
+  display: flexbox;
+  contain: content;
 }
+
+.order .image {
+    float: left;
+}
+
+.order button {
+    float: right;
+    position: relative;
+    bottom: 65px;
+    right: 30px;
+}
+
+.headline, .dates, .status {
+    position: relative;
+    margin-top: 25px;
+    left: 30px;
+}
+
+.headline {
+    font-weight: 500;
+    color: white;
+    text-transform: uppercase;
+    font-size: 30px;
+}
+
+.dates {
+    margin-left: 25px;
+    color: white;
+    font-size: 30px;
+    font-weight: 200;
+}
+
+.status {
+    position: relative;
+    font-weight: 200;
+}
+
+

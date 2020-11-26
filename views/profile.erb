@@ -47,13 +47,13 @@
       <span class="dates">
       <%=order.booking_start.day.to_s.rjust(2, "0")%>/<%=order.booking_start.month.to_s.rjust(2, "0")%>/<%=order.booking_start.year % 2000%> - <%=order.booking_end.day.to_s.rjust(2, "0")%>/<%=order.booking_end.month.to_s.rjust(2, "0")%>/<%=order.booking_end.year % 2000%>
       </span>
-      <span class="status">
+      <div class="status">
       <%if order.confirmed%>
       CONFIRMED
       <%else%>
       UNCONFIRMED
       <%end%>
-      </span>
+      </div>
       <button>VIEW</button>
     </div>
     <%end%>
