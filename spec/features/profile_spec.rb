@@ -4,6 +4,7 @@ require_relative '../feature_spec_helper'
 
 feature "Profile page" do
   scenario "the route exists" do
+    create_account_and_login
     visit('/profile')
     expect(page.status_code).to eq(200)
   end

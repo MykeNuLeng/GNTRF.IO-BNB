@@ -36,13 +36,16 @@
     <h3 class="no-info">No bookings to show yet!</h3>
     <% else%>
     <% @orders.each do |order|%>
-    <% space = Space.find(order.space_id)%>
+    <% space = Space.find(space_id: order.space_id)%>
     <div class="order">
       <span class="image">
         <img src="https://via.placeholder.com/200x100">
       </span>
+      <span class="headline">
+        <%= space.headline%>
+      </span>
       <span class="dates">
-      <%=order.booking_start%> - <%= order.booking_end %>
+      <%=order.booking_start.day.to_s.rjust(2, "0")%>/<%=order.booking_start.month.to_s.rjust(2, "0")%>/<%=order.booking_start.year % 2000%> - <%=order.booking_end.day.to_s.rjust(2, "0")%>/<%=order.booking_end.month.to_s.rjust(2, "0")%>/<%=order.booking_end.year % 2000%>
       </span>
       <span class="status">
       <%if order.confirmed%>
@@ -51,6 +54,7 @@
       UNCONFIRMED
       <%end%>
       </span>
+      <button>VIEW</button>
     </div>
     <%end%>
     <%end%>
