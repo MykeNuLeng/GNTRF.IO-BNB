@@ -99,8 +99,8 @@ describe User do
     end
 
     it "Ensures email/username is not case sensitive" do
-      test_user = User.create(username: "tEsTy", password: "123password", email: "testymctesterson@test.org")
-      returned_user = User.authenticate(email: "tEsTyMcTeStErSon@TeSt.OrG", password: "123password")
+      test_user = User.create(username: "tEsTy", password: "123Password", email: "testymctesterson@test.org")
+      returned_user = User.authenticate(email: "tEsTyMcTeStErSon@TeSt.OrG", password: "123Password")
       expect(test_user.user_id).to eq(returned_user.user_id)
       expect(test_user.username).to eq(returned_user.username.downcase)
       expect(test_user.email).to eq(returned_user.email.downcase)
