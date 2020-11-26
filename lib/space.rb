@@ -12,27 +12,51 @@ class Space
     @description = description
   end
 
-  def self.create(user_id:, price:, headline:, description:)
-    result = DatabaseConnection.query("INSERT INTO spaces (user_id, price, headline, description)
-                              VALUES ('#{user_id}', '#{price}', '#{headline}', '#{description}')
+  # Create
+
+  def self.create(user_id:, price:, headline:, description:, image: "https://i.imgur.com/8aTSula_d.webp?maxwidth=760&fidelity=grand")
+    result = DatabaseConnection.query("INSERT INTO spaces (user_id, price, headline, description, image)
+                              VALUES ('#{user_id}', '#{price}', '#{headline}', '#{description}', '#{image}')
                               RETURNING id;")
     Space.new(space_id: result[0]["id"], user_id: user_id, price: price, headline: headline, description: description)
   end
+
+  # Read
 
   def self.all
     result = DatabaseConnection.query("SELECT * FROM spaces;")
     result.map{ |rental| Space.new(space_id: rental['id'], user_id: rental['user_id'], price: rental['price'], headline: rental['headline'], description: rental['description']) }
   end
 
+  def self.open_dates(space_id:)
+    owner_dates = Space.owner_dates(space_id: space_id)
+    booked_dates = Space.booked_dates(space_id: space_id)
+    open_dates = owner_dates.select {|day| !booked_dates.include?(day) }
+  end
+
+  # Update
+
   def self.make_available(space_id:, start_date:, end_date:) # currently implementing dates to be passed as strings in format "yyyy/mm/dd" can change if needed
     DatabaseConnection.query("INSERT INTO availability (space_id, availability_start, availability_end)
                               VALUES (#{space_id}, '#{start_date}', '#{end_date}');")
   end
 
-  def self.open_dates(space_id:)
-    owner_dates = Space.owner_dates(space_id: space_id)
-    booked_dates = Space.booked_dates(space_id: space_id)
-    open_dates = owner_dates.select {|day| !booked_dates.include?(day) }
+  def self.update_price(space_id:, price:)
+    DatabaseConnection.query("UPDATE spaces SET price = #{price} WHERE id = '#{space_id}'")
+  end
+
+  def self.update_headline(space_id:, headline:)
+    DatabaseConnection.query("UPDATE spaces SET headline = '#{headline}' WHERE id = '#{space_id}'")
+  end
+
+  def self.update_description(space_id:, description:)
+    DatabaseConnection.query("UPDATE spaces SET description = '#{description}' WHERE id = '#{space_id}'")
+  end
+
+  # Delete
+
+  def self.delete(space_id: )
+    DatabaseConnection.query("DELETE FROM spaces WHERE id = #{space_id};")
   end
 
   private
