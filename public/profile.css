@@ -10,6 +10,55 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+.nav-bar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 9;
+  transition: top 0.3s;
+}
+
 .logo {
-  margin: 10px;
+  position: absolute;
+  display: inline;
+  top: 5px;
+  left: 5px;
+}
+
+.nav-buttons {
+  position: absolute;
+  display: inline;
+  right: 35px;
+  top: 25px;
+}
+
+button {
+  background: #7ec4cf;
+  border: 1px solid #52b2cf;
+  border-radius: 33.5px;
+  font-size: 32px;
+  color: white;
+  padding: 7.5px 25px 7.5px 25px;
+}
+
+.nav-buttons button {
+  margin-right: 15px;
+}
+
+button:hover {
+  cursor: pointer;
+  background: #52b2cf;
+}
+
+.container {
+  margin: auto;
+  margin-top: 150px;
+  width: 70%;
+  height: 500px;
+  
+  padding: 28.9px 25px 204.6px 26px;
+  opacity: 0.9;
+  border-radius: 29px;
+  border: solid 2px #d1cfe2;
+  background-color: #d4afb9;
 }
