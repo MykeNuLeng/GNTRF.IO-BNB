@@ -2,7 +2,7 @@ require './lib/database_connection'
 require_relative './message'
 
 class Conversation
-  attr_reader :veiwer_id, :other_id
+  attr_reader :viewer_id, :other_id
 
   def initialize(viewer_id:, other_id:)
     @viewer_id = viewer_id
