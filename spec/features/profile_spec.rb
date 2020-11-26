@@ -39,7 +39,7 @@ feature "Profile page" do
   end
 
   scenario "displays a booking correctly" do
-    user = User.create(email: "test@test.com", username: "brian", password: "test123")
+    user = User.create(email: "test@test.com", username: "brian", password: "Testlength123")
     space = Space.create(
       user_id: user.user_id,
       price: 6900,
@@ -53,7 +53,7 @@ feature "Profile page" do
     )
     visit('/')
     fill_in('email', with: 'test@test.com')
-    fill_in('password', with: 'test123')
+    fill_in('password', with: 'Testlength123')
     click_button('LOGIN')
     click_button('PROFILE')
     expect(page).to have_content("Amazing space")
