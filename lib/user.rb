@@ -12,7 +12,7 @@ class User
   end
 
   def self.create(username:, password:, email:)
-    # return false unless User.valid_username?(username: username)
+    return false unless User.valid_username?(username: username)
     # return false if password too short
     # return false if email invalid or not unique
     encrypted_password = BCrypt::Password.create(password)
@@ -38,7 +38,7 @@ class User
 
   private
   def self.valid_username?(username:)
-    return false if username.length < 6
+    return false if username.length < 5
     return false if !!(username =~ /[@€!£#$%^&*']/)
     return false if ((DatabaseConnection.query("SELECT username FROM users;")).map{|e| e["username"].downcase}).include?(username.downcase)
     true

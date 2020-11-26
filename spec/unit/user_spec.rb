@@ -32,7 +32,7 @@ describe User do
     context "error handling-- " do
       it "Returns false if the username is under 6 chars" do
         expect(User.create(username: "", password: "totallycool", email: "test@test.com")).to eq(false)
-        expect(User.create(username: "short", password: "totallycool", email: "test@test.com")).to eq(false)
+        expect(User.create(username: "derp", password: "totallycool", email: "test@test.com")).to eq(false)
       end
 
       it "Returns false if the username includes special characters" do
