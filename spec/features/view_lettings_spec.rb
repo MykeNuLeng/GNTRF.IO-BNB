@@ -1,4 +1,4 @@
-require_relative '../feature_spec_helper.'
+require_relative '../feature_spec_helper'
 require 'capybara/rspec'
 
 feature "List of lettings" do

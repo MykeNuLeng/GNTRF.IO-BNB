@@ -81,6 +81,6 @@ class Controller < Sinatra::Base
   end
 
   get '/profile/lettings' do
-    'hello lettings'
+    erb :'profile/lettings'
   end
 end
