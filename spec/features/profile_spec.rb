@@ -30,6 +30,7 @@ feature "Profile page" do
     expect(page).to have_button 'NEW LISTING'
     expect(page).not_to have_link 'Bookings'
     expect(page).to have_content 'Bookings'
+    expect(page).to have_link 'Lettings'
     expect(page).to have_link 'Spaces'
     expect(page).to have_content 'MY BOOKINGS'
     expect(page).to have_content 'No bookings to show yet!'
