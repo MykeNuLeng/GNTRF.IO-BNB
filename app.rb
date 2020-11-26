@@ -3,6 +3,7 @@ require 'sinatra/flash'
 require_relative "./lib/space"
 require_relative "./lib/user"
 require_relative "./database_connection_setup"
+require_relative "./lib/order"
 
 
 class Controller < Sinatra::Base
@@ -71,6 +72,7 @@ class Controller < Sinatra::Base
   end
 
   get '/profile' do
+    @orders = Order.order_history_by_renter_id(user_id: session[:user].user_id)
     erb(:profile)
   end
 end
