@@ -94,6 +94,7 @@ GEM
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rainbow (3.0.0)
+    rake (13.0.1)
     regexp_parser (1.8.2)
     rest-client (1.6.7)
       mime-types (>= 1.16)
@@ -163,6 +164,7 @@ DEPENDENCIES
   cucumber
   pg
   rack
+  rake
   rspec
   rubocop (= 0.79.0)
   rubocop-rspec

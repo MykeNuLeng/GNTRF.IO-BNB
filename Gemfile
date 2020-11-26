@@ -11,6 +11,7 @@ gem "pg"
 gem "rack"
 gem "bcrypt"
 gem "sinatra-flash"
+gem "rake"
 
 group :test do
   gem 'capybara'
