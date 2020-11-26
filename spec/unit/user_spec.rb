@@ -29,7 +29,7 @@ describe User do
       expect(returned_user.email).to eq("testymctesterson@test.org")
     end
 
-    context "error handling-- " do
+    context "edge case handling-- " do
       it "Returns false if the username is under 6 chars" do
         expect(User.create(username: "", password: "123Password", email: "test@test.com")).to eq(false)
         expect(User.create(username: "derp", password: "123Password", email: "test@test.com")).to eq(false)
@@ -52,6 +52,21 @@ describe User do
         expect(User.create(username: "testusername2", password: "test12!!", email: "test@test.com")).to eq(false)
         expect(User.create(username: "testusername3", password: "TESTING12!", email: "test@test.com")).to eq(false)
         expect(User.create(username: "testusername4", password: "TestingOK", email: "test@test.com")).to eq(false)
+      end
+
+      it "Returns false if the email is invalid" do
+        expect(User.create(username: "testusername1", password: "Test12!", email: "test.com")).to eq(false)
+        expect(User.create(username: "testusername1", password: "Test12!", email: "test@test")).to eq(false)
+        expect(User.create(username: "testusername1", password: "Test12!", email: "test@test@test.com")).to eq(false)
+        expect(User.create(username: "testusername1", password: "Test12!", email: "te st@test.com")).to eq(false)
+        expect(User.create(username: "testusername1", password: "Test12!", email: "te st@test.com")).to eq(false)
+        expect(User.create(username: "testusername1", password: "Test12!", email: "test()\"[]<>;:,@test.com")).to eq(false)
+        expect(User.create(username: "testusername1", password: "Test12!", email: "test\\@test.com")).to eq(false)
+        expect(User.create(username: "testusername1", password: "Test12!", email: "123456789012345678457438589487534850435430599012345678901234567890123456789012345678901234+x@test.com")).to eq(false)
+      end
+
+      it "Returns false if the email contains any apostophe" do
+        expect(User.create(username: "testusername1", password: "Test12!", email: "thomaso'leary@test.com")).to eq(false)
       end
     end
 

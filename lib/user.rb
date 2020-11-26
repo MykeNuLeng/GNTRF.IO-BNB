@@ -14,7 +14,7 @@ class User
   def self.create(username:, password:, email:)
     return false unless User.valid_username?(username: username)
     return false unless User.valid_password?(password: password)
-    # return false if email invalid or not unique
+    return false unless User.valid_email?(email: email)
     encrypted_password = BCrypt::Password.create(password)
     result = DatabaseConnection.query("INSERT INTO users (username, password, email)
                               VALUES ('#{username}', '#{encrypted_password}', '#{email}')
@@ -46,6 +46,12 @@ class User
 
   def self.valid_password?(password:)
     return false if !(password =~ /^(?=.*\d)(?=.*([a-z]))(?=.*([A-Z]))([\x20-\x7E]){8,}$/ )
+    true
+  end
+
+  def self.valid_email?(email:)
+    return false if !(email =~ URI::MailTo::EMAIL_REGEXP)
+    return false if email.include?("'")
     true
   end
 
