@@ -12,7 +12,7 @@ class User
   end
 
   def self.create(username:, password:, email:)
-    return false unless User.valid_username?(username: username)
+    # return false unless User.valid_username?(username: username)
     # return false if password too short
     # return false if email invalid or not unique
     encrypted_password = BCrypt::Password.create(password)

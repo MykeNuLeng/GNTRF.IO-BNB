@@ -1,0 +1,4 @@
+ALTER TABLE spaces
+ADD COLUMN image
+VARCHAR(512) NOT NULL
+;

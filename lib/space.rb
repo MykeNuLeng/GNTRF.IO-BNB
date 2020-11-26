@@ -14,9 +14,9 @@ class Space
 
   # Create
 
-  def self.create(user_id:, price:, headline:, description:)
-    result = DatabaseConnection.query("INSERT INTO spaces (user_id, price, headline, description)
-                              VALUES ('#{user_id}', '#{price}', '#{headline}', '#{description}')
+  def self.create(user_id:, price:, headline:, description:, image: "https://i.imgur.com/8aTSula_d.webp?maxwidth=760&fidelity=grand")
+    result = DatabaseConnection.query("INSERT INTO spaces (user_id, price, headline, description, image)
+                              VALUES ('#{user_id}', '#{price}', '#{headline}', '#{description}', '#{image}')
                               RETURNING id;")
     Space.new(space_id: result[0]["id"], user_id: user_id, price: price, headline: headline, description: description)
   end
