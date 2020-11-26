@@ -79,4 +79,8 @@ class Controller < Sinatra::Base
     @orders = Order.order_history_by_renter_id(user_id: session[:user].user_id)
     erb :'profile/bookings'
   end
+
+  get '/profile/lettings' do
+    'hello lettings'
+  end
 end
