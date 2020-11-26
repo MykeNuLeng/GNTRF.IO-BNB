@@ -4,7 +4,7 @@ require_relative 'database_connection'
 
 class Order
 
-  attr_reader :order_id, :space_id, :user_id, :booking_start, :booking_end, :confirmed
+  attr_reader :order_id, :space_id, :user_id, :booking_start, :booking_end, :confirmed, :total_price
 
   def initialize(order_id:, space_id:, user_id:, booking_start:, booking_end:, confirmed:)
     @order_id = order_id.to_i
@@ -13,6 +13,7 @@ class Order
     @booking_start = clean_date(booking_start)
     @booking_end = clean_date(booking_end)
     @confirmed = confirmed
+    @total_price = calculate_price
   end
 
   # Create
@@ -86,5 +87,10 @@ class Order
     return false if database_value == "f"
   end
 
+  def calculate_price
+    days = (((@booking_end - @booking_start) / 86400) + 1).to_i 
+    price = DatabaseConnection.query("SELECT price FROM spaces WHERE id = #{@space_id};")[0]['price'].to_i
+    days * price
+  end
 
 end
