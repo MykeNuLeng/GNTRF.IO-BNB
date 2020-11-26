@@ -52,13 +52,15 @@
       CONFIRMED
       <%else%>
       <span class="confirmation-buttons">
-      <button>REJECT</button>
-      <button>CONFIRM</button>
+      <form>
+      <button formaction="/profile/lettings/<%= letting.order_id %>/reject">REJECT</button>
+      <button formaction="/profile/lettings/<%= letting.order_id %>/confirm">CONFIRM</button>
+      </form>
       </span>
       <%end%>
       </div>
     </div>
-   
+
     <%end%>
     <%end%>
     </div>
