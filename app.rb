@@ -81,6 +81,7 @@ class Controller < Sinatra::Base
   end
 
   get '/profile/lettings' do
+    @lettings = Order.order_history_by_landlord_id(user_id: session[:user].user_id)
     erb :'profile/lettings'
   end
 end

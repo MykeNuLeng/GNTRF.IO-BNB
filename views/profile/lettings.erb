@@ -32,9 +32,35 @@
     <hr class="box-line">
     <h1 class="current-header">MY LETTINGS</h1>
     <div class="objects-in-list">
+    <%if @lettings.empty?%>
     <h3 class="no-info">No lettings to show yet!</h3>
+    <% else%>
+    <% @lettings.each do |letting|%>
+    <% space = Space.find(space_id: letting.space_id)%>
+    <div class="order">
+    <span class="image">
+        <img src="https://via.placeholder.com/200x100">
+      </span>
+      <span class="headline">
+        <%= space.headline%>
+      </span>
+       <span class="dates">
+      <%=letting.booking_start.day.to_s.rjust(2, "0")%>/<%=letting.booking_start.month.to_s.rjust(2, "0")%>/<%=letting.booking_start.year % 2000%> - <%=letting.booking_end.day.to_s.rjust(2, "0")%>/<%=letting.booking_end.month.to_s.rjust(2, "0")%>/<%=letting.booking_end.year % 2000%>
+      </span>
+       <div class="status">
+      <%if letting.confirmed%>
+      CONFIRMED
+      <%else%>
+      <span class="confirmation-buttons">
+      <button>REJECT</button>
+      <button>CONFIRM</button>
+      </span>
+      <%end%>
+      </div>
     </div>
-    </div>
+   
+    <%end%>
+    <%end%>
     </div>
   </body>
   </html>
