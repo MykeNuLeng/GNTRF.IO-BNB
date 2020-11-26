@@ -105,7 +105,7 @@ describe Order do
     end # inner context end
   end # outer context end
 
-  context " #.pending_by_landlord_id" do
+  context " Test objects needed-- " do
 
     before do
       # test user 1 will be searched landlord, test user 2 needed to prove orders on his listings not shown, and test user orderer to own the orders
@@ -125,7 +125,7 @@ describe Order do
       @test_order5 = Order.create(space_id: @test_space2.space_id, user_id: @test_user_orderer.user_id, booking_start: "2021/01/04", booking_end: "2021/01/06")
     end
 
-    it "Should return correct orders when called" do
+    it ".pending_by_landlord_id should return correct orders when called" do
       result = Order.pending_by_landlord_id(user_id: @test_user1.user_id)
       expect(result).to be_instance_of(Array)
       expect(result.length).to eq(2)
@@ -133,7 +133,23 @@ describe Order do
       expect(result.first.booking_start.strftime("%Y-%m-%d")).to eq("2021-01-04")
       expect(result.first.booking_end.strftime("%Y-%m-%d")).to eq("2021-01-06")
     end
+
+    it ".order_history_by_landlord_id should return correct orders when called" do
+      result = Order.order_history_by_landlord_id(user_id: @test_user1.user_id)
+      expect(result).to be_instance_of(Array)
+      expect(result.length).to eq(3)
+      expect(result.first.space_id).to eq(@test_space1.space_id)
+      expect(result.first.confirmed).to eq(true)
+      expect(result.first.booking_start.strftime("%Y-%m-%d")).to eq("2021-01-01")
+      expect(result.first.booking_end.strftime("%Y-%m-%d")).to eq("2021-01-03")
+      expect(result.last.confirmed).to eq(false)
+      expect(result.last.booking_start.strftime("%Y-%m-%d")).to eq("2021-01-07")
+      expect(result.last.booking_end.strftime("%Y-%m-%d")).to eq("2021-01-09")
+    end
+
   end
+
+
 
 
 end

@@ -52,6 +52,15 @@ class Order
       Order.new(order_id: listing['id'], space_id: listing['space_id'], user_id: listing['user_id'], booking_start: listing['booking_start'], booking_end: listing['booking_end'], confirmed: Order.clean_boolean(listing['confirmed'])) }
   end
 
+  def self.order_history_by_landlord_id(user_id: )
+    result = DatabaseConnection.query("SELECT spaces.user_id, orders.id, space_id, orders.user_id, booking_start, booking_end, confirmed
+                                       FROM orders INNER JOIN spaces
+                                       ON spaces.id = orders.space_id
+                                       AND spaces.user_id = #{user_id};")
+    result.map { |listing|
+      Order.new(order_id: listing['id'], space_id: listing['space_id'], user_id: listing['user_id'], booking_start: listing['booking_start'], booking_end: listing['booking_end'], confirmed: Order.clean_boolean(listing['confirmed'])) }
+  end
+
   def self.confirm(order_id:)
     DatabaseConnection.query("UPDATE orders SET confirmed = true WHERE id = '#{order_id}';")
   end
