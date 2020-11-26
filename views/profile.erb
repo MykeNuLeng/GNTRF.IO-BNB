@@ -30,9 +30,34 @@
     <a href="#">Spaces</a>
     </span>
     <hr class="box-line">
-    <div class="objects-in-list">
     <h1 class="current-header">MY BOOKINGS</h1>
-    <h2 class="no-info">No bookings to show yet!</h2>
+    <div class="objects-in-list">
+    <% if @orders.empty? %>
+    <h3 class="no-info">No bookings to show yet!</h3>
+    <% else%>
+    <% @orders.each do |order|%>
+    <% space = Space.find(space_id: order.space_id)%>
+    <div class="order">
+      <span class="image">
+        <img src="https://via.placeholder.com/200x100">
+      </span>
+      <span class="headline">
+        <%= space.headline%>
+      </span>
+      <span class="dates">
+      <%=order.booking_start.day.to_s.rjust(2, "0")%>/<%=order.booking_start.month.to_s.rjust(2, "0")%>/<%=order.booking_start.year % 2000%> - <%=order.booking_end.day.to_s.rjust(2, "0")%>/<%=order.booking_end.month.to_s.rjust(2, "0")%>/<%=order.booking_end.year % 2000%>
+      </span>
+      <div class="status">
+      <%if order.confirmed%>
+      CONFIRMED
+      <%else%>
+      UNCONFIRMED
+      <%end%>
+      </div>
+      <button>VIEW</button>
+    </div>
+    <%end%>
+    <%end%>
     </div>
     </div>
     </div>

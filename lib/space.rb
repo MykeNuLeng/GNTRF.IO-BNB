@@ -34,6 +34,17 @@ class Space
     open_dates = owner_dates.select {|day| !booked_dates.include?(day) }
   end
 
+  def self.find(space_id:)
+    result = DatabaseConnection.query("SELECT * FROM spaces WHERE id = '#{space_id}';")
+    Space.new(
+      space_id: result[0]['id'],
+      user_id: result[0]['user_id'],
+      price: result[0]['price'],
+      headline: result[0]['headline'],
+      description: result[0]['description']
+    )
+  end
+
   # Update
 
   def self.make_available(space_id:, start_date:, end_date:) # currently implementing dates to be passed as strings in format "yyyy/mm/dd" can change if needed
