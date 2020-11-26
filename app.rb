@@ -77,6 +77,6 @@ class Controller < Sinatra::Base
     redirect('/') unless session[:user]
 
     @orders = Order.order_history_by_renter_id(user_id: session[:user].user_id)
-    erb(:profile)
+    erb :'profile/bookings'
   end
 end
