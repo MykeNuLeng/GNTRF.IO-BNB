@@ -4,25 +4,6 @@ require 'space'
 
 
 describe Order do
-  # subject { Order.new(order_id: 1, space_id: 2, user_id: 3, booking_start: "2020-11-12", booking_end: "2020-11-13", confirmed: false) }
-  # it 'it correctly returns oder_id' do
-  #   expect(subject.order_id).to eq 1
-  # end
-  # it 'it correctly returns space_id' do
-  #   expect(subject.space_id).to eq 2
-  # end
-  # it 'it correctly returns user_id' do
-  #   expect(subject.user_id).to eq 3
-  # end
-  # it 'it correctly returns booking_start' do
-  #   expect(subject.booking_start).to eq Time.new(2020, 11, 12)
-  # end
-  # it 'it correctly returns booking_end' do
-  #   expect(subject.booking_end).to eq Time.new(2020, 11, 13)
-  # end
-  # it 'it correctly returns confirmed' do
-  #   expect(subject.confirmed).to eq false
-  # end
 
   it '.all pending returns an empty array if there is nothing pending' do
     expect(Order.all_pending.empty?).to eq true
@@ -150,10 +131,5 @@ describe Order do
       expect(result.last.booking_start.strftime("%Y-%m-%d")).to eq("2021-01-07")
       expect(result.last.booking_end.strftime("%Y-%m-%d")).to eq("2021-01-09")
     end
-
   end
-
-
-
-
 end
