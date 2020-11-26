@@ -36,27 +36,21 @@
     <h3 class="no-info">No bookings to show yet!</h3>
     <% else%>
     <% @orders.each do |order|%>
+    <% space = Space.find(order.space_id)%>
     <div class="order">
       <span class="image">
         <img src="https://via.placeholder.com/200x100">
       </span>
-      <div class="top-of-space">
       <span class="dates">
-      <%=order.start_date%> - <%= order.end_date %>
+      <%=order.booking_start%> - <%= order.booking_end %>
       </span>
-      <span class="price">
-      £<%=order.order_id%> per night needs to be fixed
-      </span>
-      </div>
-      <br>
-      <br>
-      <br>
-      <div class="bottom-of-space">
       <span class="status">
-      <%=order.confirmed%>
+      <%if order.confirmed%>
+      CONFIRMED
+      <%else%>
+      UNCONFIRMED
+      <%end%>
       </span>
-      </div>
-
     </div>
     <%end%>
     <%end%>

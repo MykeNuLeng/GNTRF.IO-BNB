@@ -127,6 +127,12 @@ describe Space do
           expect(days[5].strftime("%Y-%m-%d")).to eq("2020-11-28")
         end
 
+      context ".find" do
+        it "returns a space from a given ID" do
+          returned_space = Space.find(space_id: @test_space1.space_id)
+          expect(returned_space.space_id).to eq(@test_space1.space_id)
+        end
+      end
 
       end # open dates context end
     end # test space context end
