@@ -15,6 +15,10 @@ class Space
   # Create
 
   def self.create(user_id:, price:, headline:, description:, image: "https://i.imgur.com/8aTSula_d.webp?maxwidth=760&fidelity=grand")
+    return false unless Space.valid_price?(price: price)
+    return false unless headline.length < 160
+    headline = Space.sub_apostrophe(headline)
+    description = Space.sub_apostrophe(description)
     result = DatabaseConnection.query("INSERT INTO spaces (user_id, price, headline, description, image)
                               VALUES ('#{user_id}', '#{price}', '#{headline}', '#{description}', '#{image}')
                               RETURNING id;")
@@ -103,6 +107,17 @@ class Space
     else
       return Space.clean_date(hash["booking_end"])
     end
+  end
+
+  # edge cases
+
+  def self.valid_price?(price:)
+    return false if !(price.to_s =~ /\A\d+?\z/)
+    true
+  end
+
+  def self.sub_apostrophe(text)
+    text.gsub "'", "&#39;"
   end
 
 end

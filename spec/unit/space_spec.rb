@@ -47,6 +47,40 @@ describe Space do
       expect(returned_space.description).to eq("Really cheap, really damp!")
     end
 
+    context ".create edge case handling-- " do
+      it "returns false if a alphabetic character entered into price" do
+        expect(Space.create(user_id: @test_user.user_id, price: "abc", headline: "Kinda alright space", description: "Really cheap, really damp!")).to eq(false)
+      end
+
+      it "returns false if a float entered into price" do
+        expect(Space.create(user_id: @test_user.user_id, price: 1000.50, headline: "Kinda alright space", description: "Really cheap, really damp!")).to eq(false)
+      end
+
+      it "returns false if a negative integer entered into price" do
+        expect(Space.create(user_id: @test_user.user_id, price: -10000, headline: "Kinda alright space", description: "Really cheap, really damp!")).to eq(false)
+      end
+
+      it "doesn't return false if a numeric string entered into price" do
+        expect(Space.create(user_id: @test_user.user_id, price: "1000", headline: "Kinda alright space", description: "Really cheap, really damp!")).to_not eq(false)
+      end
+
+      it "returns false if headline over 160 characters long" do
+        expect(Space.create(user_id: @test_user.user_id, price: 10000, headline: "kjrkxummsiovediouippmmkcokkdojwhhtpvxhvcltxcifeugkvvwngxgizlhcdazcxqrgboeqggmskovlwhxdpbturxuktyzacayidgefhsmejtjsxulnxrhrhztbkyswaxqbxbyssfvcmrltykxlmtddqqpfwelumnhpfiocnfkkvaytzoaldsxujyilbuydftzsgnnwlbyahepfnosrcahcjelowhzwntnutjfyeqkmyeqgpjtoncujlaqeqoakkcxpqmlanlotcsnudbgnqrtsikmcmneyowakminpahfmzgzanrd", description: "Really cheap, really damp!")).to eq(false)
+      end
+
+      it "headlines containing apostrophes should have them converted to &#39;" do
+        result = Space.create(user_id: @test_user.user_id, price: 10000, headline: "That's what I'm talking about", description: "Really cheap, really damp!")
+        expect(result.headline.include?("'")).to eq(false)
+        expect(result.headline.include?("&#39;")).to eq(true)
+      end
+
+      it "descriptions containing apostrophes should have them converted to &#39;" do
+        result = Space.create(user_id: @test_user.user_id, price: 10000, headline: "Big place to stay", description: "I've loved this place for years, it's been in my family or generations")
+        expect(result.description.include?("'")).to eq(false)
+        expect(result.description.include?("&#39;")).to eq(true)
+      end
+    end
+
     context "Test space needed-- " do
 
       before do
