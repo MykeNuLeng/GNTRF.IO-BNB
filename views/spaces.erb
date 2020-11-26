@@ -15,7 +15,7 @@
       <div class="nav-buttons">
         <form>
         <button formaction="/spaces/new">NEW LISTING</button>
-        <button>PROFILE</button>
+        <button formaction="/profile">PROFILE</button>
         <%if session[:user]%>
         <button formaction="/sessions/end">LOG OFF</button>
         <%else%>

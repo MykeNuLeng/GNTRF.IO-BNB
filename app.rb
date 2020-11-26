@@ -69,4 +69,8 @@ class Controller < Sinatra::Base
 
     redirect('/spaces')
   end
+
+  get '/profile' do
+    erb(:profile)
+  end
 end
