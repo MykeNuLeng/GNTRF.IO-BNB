@@ -14,9 +14,9 @@
       </div>
       <div class="nav-buttons">
         <form>
+        <%if session[:user]%>
         <button formaction="/spaces/new">NEW LISTING</button>
         <button formaction="/profile">PROFILE</button>
-        <%if session[:user]%>
         <button formaction="/sessions/end">LOG OFF</button>
         <%else%>
         <button>LOG IN</button>
