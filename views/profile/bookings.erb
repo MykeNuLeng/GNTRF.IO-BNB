@@ -39,7 +39,7 @@
     <% space = Space.find(space_id: order.space_id)%>
     <div class="order">
       <span class="image">
-        <img src="https://via.placeholder.com/200x100">
+        <img class="space-img" src="<%= order.image%>">
       </span>
       <span class="headline">
         <%= space.headline%>

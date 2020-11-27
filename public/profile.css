@@ -167,4 +167,12 @@ button:hover {
     margin-right: 15px;
 }
 
+.space-img {
+  max-width: 200px;
+  max-height: 100px;
+  height: auto;
+  border-radius: 50px;
+  margin-left: 15px;
+}
+
 
