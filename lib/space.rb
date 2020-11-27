@@ -60,7 +60,8 @@ class Space
       user_id: result[0]['user_id'],
       price: result[0]['price'],
       headline: result[0]['headline'],
-      description: result[0]['description']
+      description: result[0]['description'],
+      image: result[0]['image']
     )
   end
 
@@ -85,7 +86,7 @@ class Space
 
   # Delete
 
-  def self.delete(space_id: )
+  def self.delete(space_id:)
     DatabaseConnection.query("DELETE FROM spaces WHERE id = #{space_id};")
   end
 
