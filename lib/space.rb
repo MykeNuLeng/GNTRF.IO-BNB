@@ -33,6 +33,20 @@ class Space
     result.map{ |rental| Space.new(space_id: rental['id'], user_id: rental['user_id'], price: rental['price'], headline: rental['headline'], description: rental['description'], image: rental['image']) }
   end
 
+  def self.all_by_user(user_id:)
+    result = DatabaseConnection.query("SELECT * FROM spaces WHERE user_id = '#{user_id}';")
+    result.map do |space|
+      Space.new(
+        space_id: space['id'],
+        user_id: space['user_id'],
+        price: space['price'],
+        headline: space['headline'],
+        description: space['description'],
+        image: space['image']
+      )
+    end
+  end
+
   def self.open_dates(space_id:)
     owner_dates = Space.owner_dates(space_id: space_id)
     booked_dates = Space.booked_dates(space_id: space_id)
@@ -46,7 +60,8 @@ class Space
       user_id: result[0]['user_id'],
       price: result[0]['price'],
       headline: result[0]['headline'],
-      description: result[0]['description']
+      description: result[0]['description'],
+      image: result[0]['image']
     )
   end
 
@@ -71,7 +86,7 @@ class Space
 
   # Delete
 
-  def self.delete(space_id: )
+  def self.delete(space_id:)
     DatabaseConnection.query("DELETE FROM spaces WHERE id = #{space_id};")
   end
 

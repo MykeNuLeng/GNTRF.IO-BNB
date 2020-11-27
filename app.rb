@@ -87,8 +87,17 @@ class Controller < Sinatra::Base
   end
 
   get '/profile/lettings' do
+    redirect('/') unless session[:user]
+
     @lettings = Order.order_history_by_landlord_id(user_id: session[:user].user_id)
     erb :'profile/lettings'
+  end
+
+  get '/profile/spaces' do
+    redirect('/') unless session[:user]
+
+    @spaces = Space.all_by_user(user_id: session[:user].user_id)
+    erb :'profile/spaces'
   end
 
   get '/profile/lettings/:id/reject' do

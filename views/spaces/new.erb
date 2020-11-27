@@ -34,18 +34,18 @@
     <form name="new-space" action="/spaces/new" method='post'>
       <h1>CREATE A NEW SPACE</h1>
       <div class="headline-field">
-      <textarea maxlength="140" name="headline" id="headline" placeholder="Headline"></textarea>
+      <textarea maxlength="140" name="headline" id="headline" placeholder="Headline" required></textarea>
       </div>
       <div class="decription-field">
-      <textarea maxlength="400" id="description" name="description" placeholder="Description"></textarea>
+      <textarea maxlength="400" id="description" name="description" placeholder="Description" required></textarea>
       </div>
       <div class="price-field">
       <i class="fas fa-pound-sign"></i>
-      <input type="text" id="price" name="price" placeholder="Price">
+      <input type="number" id="price" name="price" placeholder="Price" required>
       </div>
       <div class="photo-field">
       <i class="fas fa-camera"></i>
-      <input type="text" id="photo" name="photo" placeholder="Photo URL">
+      <input type="text" id="photo" name="photo" placeholder="Photo URL" required>
       </div>
       <button class="submit-button">SUBMIT</button>
     </form>

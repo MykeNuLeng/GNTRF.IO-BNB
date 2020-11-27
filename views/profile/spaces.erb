@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>GNTRF.IO - Bookings</title>
+    <title>GNTRF.IO - Lettings</title>
     <link rel="stylesheet" href="../profile.css">
   </head>
   <body>
@@ -25,41 +25,34 @@
     </div>
     <div class="container">
     <span class="profile-box-links">
-    <p class="selected">Bookings</p>
-    <a href="/profile/lettings">Lettings</a>
-    <a href="/profile/spaces">Spaces</a>
+        <a href="/profile">Bookings</a>
+        <a href="/profile/lettings">Lettings</a>
+        <p class="selected">Spaces</p>
     </span>
     <hr class="box-line">
-    <h1 class="current-header">MY BOOKINGS</h1>
+    <h1 class="current-header">MY SPACES</h1>
     <div class="objects-in-list">
-    <% if @orders.empty? %>
-    <h3 class="no-info">No bookings to show yet!</h3>
+    <%if @spaces.empty?%>
+    <h3 class="no-info">No spaces to show yet!</h3>
     <% else%>
-    <% @orders.each do |order|%>
-    <% space = Space.find(space_id: order.space_id)%>
+    <% @spaces.each do |space|%>
     <div class="order">
-      <span class="image">
+    <span class="image">
         <img class="space-img" src="<%= space.image%>">
       </span>
       <span class="headline">
         <%= space.headline%>
       </span>
-      <span class="dates">
-      <%=order.booking_start.day.to_s.rjust(2, "0")%>/<%=order.booking_start.month.to_s.rjust(2, "0")%>/<%=order.booking_start.year % 2000%> - <%=order.booking_end.day.to_s.rjust(2, "0")%>/<%=order.booking_end.month.to_s.rjust(2, "0")%>/<%=order.booking_end.year % 2000%>
+      <span class="edit-button">
+      <form>
+      <button>EDIT</button>
+      </form>
       </span>
-      <div class="status">
-      <%if order.confirmed%>
-      CONFIRMED
-      <%else%>
-      UNCONFIRMED
-      <%end%>
       </div>
-      <button>VIEW</button>
+      <%end%>
     </div>
+
     <%end%>
-    <%end%>
-    </div>
-    </div>
     </div>
   </body>
   </html>

@@ -27,7 +27,7 @@
     <span class="profile-box-links">
         <a href="/profile">Bookings</a>
         <p class="selected">Lettings</p>
-        <a href="#">Spaces</a>
+        <a href="/profile/spaces">Spaces</a>
     </span>
     <hr class="box-line">
     <h1 class="current-header">MY LETTINGS</h1>
@@ -39,7 +39,7 @@
     <% space = Space.find(space_id: letting.space_id)%>
     <div class="order">
     <span class="image">
-        <img src="https://via.placeholder.com/200x100">
+        <img class="space-img" src="<%= space.image%>">
       </span>
       <span class="headline">
         <%= space.headline%>

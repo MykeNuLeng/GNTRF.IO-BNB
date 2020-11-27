@@ -167,6 +167,18 @@ describe Space do
         end
       end
 
+      context ".all_by_user" do
+        it "returns a list of spaces with that user ID" do
+          returned_spaces = Space.all_by_user(user_id: @test_space1.user_id)
+          expect(returned_spaces.first.space_id).to eq(@test_space1.space_id)
+          expect(returned_spaces.first.user_id).to eq(@test_space1.user_id)
+          expect(returned_spaces.first.price).to eq(@test_space1.price)
+          expect(returned_spaces.first.headline).to eq(@test_space1.headline)
+          expect(returned_spaces.first.description).to eq(@test_space1.description)
+          expect(returned_spaces.first.image).to eq(@test_space1.image)
+        end
+      end
+
       end # open dates context end
     end # test space context end
   end # test user context end
