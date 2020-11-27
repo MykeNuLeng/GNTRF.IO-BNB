@@ -2,7 +2,7 @@ require 'capybara/rspec'
 require 'order'
 require_relative '../feature_spec_helper'
 
-feature "Lettings page" do
+feature "Spaces page" do
   scenario "the route exists" do
     create_account_and_login
     visit('/profile/spaces')

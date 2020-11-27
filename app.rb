@@ -91,6 +91,12 @@ class Controller < Sinatra::Base
     erb :'profile/lettings'
   end
 
+  get '/profile/spaces' do
+    # @spaces = Space.all_by_user
+    @spaces = []
+    erb :'profile/spaces'
+  end
+
   get '/profile/lettings/:id/reject' do
     Order.reject(order_id: params[:id])
     redirect '/profile/lettings'
