@@ -1,9 +1,9 @@
 # GNTRF.IO-BNB
 ## Team Members:
-[Adam Grieve](https://github.com/AdamusBG) 
-[Alex Withington-Smith](https://github.com/ehwus)
-[Mike Linford](https://github.com/MykeNuLeng)
-[Symion Edwards](https://github.com/sedwards93)
+- [Adam Grieve](https://github.com/AdamusBG) 
+- [Alex Withington-Smith](https://github.com/ehwus)
+- [Mike Linford](https://github.com/MykeNuLeng)
+- [Symion Edwards](https://github.com/sedwards93)
 
 ## Project Overview:
 This week saw our first group project with Maker's Academy. We were randomly assigned into teams of four and tasked with building an Airbnb clone using only a specification as guidance. 
@@ -62,6 +62,7 @@ On Monday, we agreed to work towards an MVP with functionality to sign up, log i
 ![](public/images/view_spaces.png)
 ![](public/images/new_space.png)
 ![](public/images/bookings.png)
+
 ## Run
 1.  Clone the repo
 2.  `$ bundle install`
