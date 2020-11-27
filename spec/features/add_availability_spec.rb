@@ -1,21 +1,12 @@
 require 'capybara/rspec'
 require 'space'
 require 'user'
+require_relative '../feature_spec_helper'
+
 
 feature "Add Availability" do
   scenario "accessible by clicking button in profile spaces (when logged in)" do
-    landlord = User.create(email: "leech@test.com", username: "parasite", password: "Testlength123")
-
-    space = Space.create(
-      user_id: landlord.user_id,
-      price: 6900,
-      headline: "Amazing space",
-      description: "test"
-    )
-    visit('/')
-    fill_in('email', with: 'leech@test.com')
-    fill_in('password', with: 'Testlength123')
-    click_button('LOGIN')
+    space = create_landlord_with_space_and_login
     click_button('PROFILE')
     click_link('Spaces')
     expect(current_path).to eq('/profile/spaces')
@@ -24,6 +15,13 @@ feature "Add Availability" do
   end
 
   scenario "contains two date input elements" do
-    
+    space = create_landlord_with_space_and_login
+    click_button('PROFILE')
+    click_link('Spaces')
+    expect(current_path).to eq('/profile/spaces')
+    click_button("ADD AVAILABILITY")
+    expect(current_path).to eq("/spaces/#{space.space_id}/add-availability")
+    expect(page).to have_form('start-date')
+    expect(page).to have_form('end-date')
   end
 end
