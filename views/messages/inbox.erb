@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>GNTRF.IO - Spaces</title>
+    <title>GNTRF.IO - Inbox</title>
     <link rel="stylesheet" href="../spaces.css">
     <script src="../scripts/nav-bar.js"></script>
   </head>
@@ -23,47 +23,38 @@
         <%end%>
         </form>
       </div>
-      <%if flash[:notice]%>
-       <div class="alert">
-        <%= flash[:notice]%>
-       </div>
-    <% end%>
     </div>
     <div class="container">
-
-    <% if @spaces.empty? %>
-      <h3 class="no-listings">NO CURRENT SPACES!</h3>
-    <% else%>
-      <% @spaces.each do |space|%>
-      <div class="space">
-        <span class="image">
-          <img class="space-img" src="<%= space.image%>">
-        </span>
-      <div class="top-of-space">
-        <span class="headline">
-          <%=space.headline%>
-        </span>
-        <span class="price">
-          £<%=space.price / 100%> per night
-        </span>
+      <a class="log-in-selector" href='/messages/<%= session[:user].user_id %>/inbox'>INBOX</a>
+      <a class="sign-up-selector" href='/messages/<%= session[:user].user_id %>/outbox'>OUTBOX</a>
+      <% if @inbox.empty? %>
+        <h3 class="no-listings">NOTHING IN YOUR INBOX!</h3>
+      <% else%>
+        <% @inbox.each do |message|%>
+        <div class="space">
+          <span class="image">
+            "<%=User.get_username_by_id(user_id: message.user_id_from)%>">
+          </span>
+        <div class="top-of-space">
+          <span class="price">
+            SENT AT:<%= message.time.strftime("%Y/%m/%d %H:%M:%S")%>
+          </span>
       </div>
       <br>
       <br>
       <br>
         <div class="bottom-of-space">
           <span class="description">
-            <%=space.description%>
+            <%=message.content%>
             </span>
-            <form action="/spaces/<%=space.space_id%>/book">
-          <button class="book-button">BOOK</button>
-            </form>
         </div>
       </div>
     <%end%>
   <%end%>
   </div>
   <form>
-  <button formaction="/messages/<%= session[:user].user_id %>/inbox">MESSAGES</button>
+    <button formaction="/messages/<%= session[:user].user_id %>/inbox">MESSAGES</button>
+    <button formaction="/messages/<%= session[:user].user_id %>/new">NEW MESSAGE</button>
   </form>
   </body>
   </html>

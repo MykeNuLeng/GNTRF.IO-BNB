@@ -4,6 +4,8 @@ require_relative "./lib/space"
 require_relative "./lib/user"
 require_relative "./database_connection_setup"
 require_relative "./lib/order"
+require_relative "./lib/message"
+require_relative "./lib/conversation"
 
 
 class Controller < Sinatra::Base
@@ -51,7 +53,7 @@ class Controller < Sinatra::Base
     if user == false
       flash[:notice] = "INVALID FIELD ENTRY"
       redirect '/users/new'
-    end  
+    end
 
     redirect '/'
   end
@@ -143,5 +145,26 @@ class Controller < Sinatra::Base
   get '/profile/lettings/:id/confirm' do
     Order.confirm(order_id: params[:id])
     redirect '/profile/lettings'
+  end
+
+  get '/messages/:id/inbox' do
+    @inbox = Message.get_inbox(user_id: params[:id])
+    erb :'messages/inbox'
+  end
+
+  get '/messages/:id/outbox' do
+    @outbox = Message.get_outbox(user_id: params[:id])
+    erb :'messages/outbox'
+  end
+
+  get '/messages/:id/new' do
+    erb :'messages/new_message'
+  end
+
+  post '/messages/:id/new' do
+    if User.get_id_by_username(username: params[:recipient])
+      message = Message.send_message(my_id: params[:id].to_i, recipient_id: User.get_id_by_username(username: params[:recipient]), content: params[:content])
+    end
+    redirect '/'
   end
 end
