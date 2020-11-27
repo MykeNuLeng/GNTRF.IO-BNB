@@ -56,12 +56,31 @@ On Monday, we agreed to work towards an MVP with functionality to sign up, log i
 ## Class diagram:
 ![](public/images/class_diagram.png)
 
+## Notes on functionality:
+ - Users must provide a unique alpha-numeric username, with a length greater than five characters. 
+ - Users must provide valid and matching passwords.
+ - Users must provide a unique and valid email address.
+ - Users must enter content into each field.
+ - Space price must be set as a valid integer. 
+ - Space headline must be within the 160 character limit.
+ - Information containing apostrophes is converted to the HTML charset `&#39;` before being stored in the database.
+ - Information regarding dates and times are cleansed after being pulled from the database. 
+
 ## User interface:
 ![](public/images/colour_palette.png)
+We chose this palette of five colours to base our stylling off.
+
 ![](public/images/login_signup.png)
+A screenshot of the login / signup page. 
+
 ![](public/images/view_spaces.png)
+A screenshot of the spaces page.
+
 ![](public/images/new_space.png)
+A screenshot of the new space form.
+
 ![](public/images/bookings.png)
+A screenshot of the bookings page. 
 
 ## Run
 1.  Clone the repo
