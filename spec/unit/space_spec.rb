@@ -78,6 +78,11 @@ describe Space do
         expect(result.description.include?("'")).to eq(false)
         expect(result.description.include?("&#39;")).to eq(true)
       end
+
+      it "Returns correct user_id when .owner_id_by_space_id called" do
+        result = Space.create(user_id: @test_user.user_id, price: 10000, headline: "Big place to stay", description: "I've loved this place for years, it's been in my family or generations")
+        expect(Space.owner_id_by_space_id(space_id: result.space_id)).to eq(@test_user.user_id)
+      end
     end
 
     context "Test space needed-- " do
