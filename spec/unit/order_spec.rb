@@ -75,6 +75,14 @@ describe Order do
         expect(Order.all_pending.first.booking_end).to eq(@test_order.booking_end)
       end
 
+      it ".find_by_order_id returns the correct order as a ruby object"do
+        returned_order = Order.find_by_order_id(order_id: @test_order.order_id)
+        expect(returned_order).to be_instance_of(Order)
+        expect(returned_order.user_id).to eq(@test_order.user_id)
+        expect(returned_order.booking_start).to eq(@test_order.booking_start)
+        expect(returned_order.booking_end).to eq(@test_order.booking_end)
+      end
+
       it ".pending_by_renter_id returns array of pending orders by order owner id" do
         result = Order.pending_by_renter_id(user_id: @order_owner.user_id)
         expect(result).to be_an_instance_of Array

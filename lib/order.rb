@@ -33,6 +33,12 @@ class Order
       Order.new(order_id: listing['id'], space_id: listing['space_id'], user_id: listing['user_id'], booking_start: listing['booking_start'], booking_end: listing['booking_end'], confirmed: false) }
   end
 
+  def self.find_by_order_id(order_id:)
+    result = DatabaseConnection.query("SELECT * FROM orders WHERE id = #{order_id};")
+      result.map { |listing|
+        Order.new(order_id: listing['id'], space_id: listing['space_id'], user_id: listing['user_id'], booking_start: listing['booking_start'], booking_end: listing['booking_end'], confirmed: Order.clean_boolean(listing['confirmed'])) }[0]
+  end
+
   # Read - renter
 
   def self.order_history_by_renter_id(user_id: )
@@ -88,7 +94,7 @@ class Order
   end
 
   def calculate_price
-    days = (((@booking_end - @booking_start) / 86400) + 1).to_i 
+    days = (((@booking_end - @booking_start) / 86400) + 1).to_i
     price = DatabaseConnection.query("SELECT price FROM spaces WHERE id = #{@space_id};")[0]['price'].to_i
     days * price
   end
