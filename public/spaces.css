@@ -153,3 +153,14 @@ button:hover {
 .space-content {
     padding-left: 220px;
 }
+
+#messages {
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    opacity: 50%;
+}
+
+#messages:hover {
+    opacity: 100%;
+}

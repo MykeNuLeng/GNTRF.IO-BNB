@@ -3,14 +3,13 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>GNTRF.IO - New message</title>
-    <link rel="stylesheet" href="../spaces.css">
-    <script src="../scripts/nav-bar.js"></script>
+    <title>GNTRF.IO - New Message</title>
+    <link rel="stylesheet" href="../../profile.css">
   </head>
   <body>
     <div class="nav-bar" id="nav-bar">
       <div class="logo">
-        <a href="/"><img name="logo" src="../images/logo.png"></a>
+        <a href="/"><img name="logo" src="../../images/logo.png"></a>
       </div>
       <div class="nav-buttons">
         <form>
@@ -25,12 +24,18 @@
       </div>
     </div>
     <div class="container">
-      <form method="post" action="/messages/<%=session[:user].user_id%>/new">
-        <input name="recipient" placeholder="Username" type="text"></input>
-        <input name="content" placeholder="Message" type="text"></input>
-        <input value="SEND" type="submit"></input>
+      <div class="profile-box-links">
+      <a class="log-in-selector" href='/messages/<%= session[:user].user_id %>/inbox'>INBOX</a>
+      <a class="log-in-selector" href='/messages/<%= session[:user].user_id %>/outbox'>OUTBOX</a>
+      <a class="log-in-selector" href='/messages/<%= session[:user].user_id %>/new'>NEW MESSAGE</a>
+      
+      </div>
+      <hr class="box-line">
+      <form method="post" action="/messages/<%=session[:user].user_id%>/new" class="user-input" style="text-align: center; margin-top: 200px;">
+        <input name="recipient" placeholder="Username" type="text">
+        <input name="content" placeholder="Message" type="text">
+        <input value="SEND" type="submit">
       </form>
-    </div>
     <br>
     <br>
     <br>

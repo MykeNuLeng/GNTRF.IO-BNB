@@ -26,7 +26,9 @@
     <div class="container">
       <div class="profile-box-links">
       <a class="log-in-selector" href='/messages/<%= session[:user].user_id %>/inbox'>INBOX</a>
-      <a class="sign-up-selector" href='/messages/<%= session[:user].user_id %>/outbox'>OUTBOX</a>
+      <a class="log-in-selector" href='/messages/<%= session[:user].user_id %>/outbox'>OUTBOX</a>
+      <a class="log-in-selector" href='/messages/<%= session[:user].user_id %>/new'>NEW MESSAGE</a>
+      
       </div>
       <hr class="box-line">
       <% if @inbox.empty? %>
