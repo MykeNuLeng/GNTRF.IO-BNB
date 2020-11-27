@@ -37,11 +37,21 @@ class User
   end
 
   def self.get_id_by_username(username:)
-    DatabaseConnection.query("SELECT id FROM users WHERE username = '#{username.downcase}';")[0]["id"].to_i
+    result = DatabaseConnection.query("SELECT id FROM users WHERE username = '#{username.downcase}';")
+    if result.cmd_tuples == 0
+      return false
+    else
+      return result[0]["id"].to_i
+    end
   end
 
   def self.get_username_by_id(user_id:)
-    DatabaseConnection.query("SELECT username FROM users WHERE id = #{user_id};")[0]["username"]
+    result = DatabaseConnection.query("SELECT username FROM users WHERE id = #{user_id};")
+    if result.cmd_tuples == 0
+      return false
+    else
+      return result[0]["username"]
+    end
   end
 
   private
