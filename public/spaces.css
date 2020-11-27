@@ -126,6 +126,13 @@ button:hover {
     margin-right: 25px;
 }
 
+.book-button {
+    position: relative;
+    float: right;
+    bottom: 20px;
+    right: 20px;
+}
+
 .space-content {
     padding-left: 220px;
 }
