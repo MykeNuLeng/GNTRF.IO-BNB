@@ -33,17 +33,17 @@ feature 'you can message people' do
     click_button('MESSAGES')
     expect(page).to have_content 'NOTHING IN YOUR INBOX!'
     click_link('OUTBOX')
-    click_link('NEW MESSAGE')
+    click_button('NEW MESSAGE')
     fill_in("recipient", with: 'brian2')
     fill_in('content', with: 'test')
     click_button('SEND')
-    click_button('LOG OUT')
+    click_button('LOG OFF')
     fill_in('email', with: 'test2@test.com')
     fill_in('password', with: 'Testlength123')
     click_button('LOGIN')
     click_button('MESSAGES')
     expect(page).to have_content 'test'
-    expect(page).to have_content 'brian2'
+    expect(page).to have_content 'brian1'
   end
 
   scenario 'outbox functions as expected' do

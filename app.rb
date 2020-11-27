@@ -116,4 +116,18 @@ class Controller < Sinatra::Base
     @inbox = Message.get_inbox(user_id: params[:id])
     erb :'messages/inbox'
   end
+
+  get '/messages/:id/outbox' do
+    @outbox = Message.get_outbox(user_id: params[:id])
+    erb :'messages/outbox'
+  end
+
+  get '/messages/:id/new' do
+    erb :'messages/new_message'
+  end
+
+  post '/messages/:id/new' do
+    Message.send_message(my_id: params[:id], recipient_id: User.get_id_by_username(username: params[:recipient]), content: params[:content])
+    redirect '/'
+  end
 end

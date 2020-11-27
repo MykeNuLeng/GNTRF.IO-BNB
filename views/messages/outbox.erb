@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>GNTRF.IO - Inbox</title>
+    <title>GNTRF.IO - Outbox</title>
     <link rel="stylesheet" href="../spaces.css">
     <script src="../scripts/nav-bar.js"></script>
   </head>
@@ -27,13 +27,13 @@
     <div class="container">
       <a class="log-in-selector" href='/messages/<%= session[:user].user_id %>/inbox'>INBOX</a>
       <a class="sign-up-selector" href='/messages/<%= session[:user].user_id %>/outbox'>OUTBOX</a>
-      <% if @inbox.empty? %>
-        <h3 class="no-listings">NOTHING IN YOUR INBOX!</h3>
+      <% if @outbox.empty? %>
+        <h3 class="no-listings">NOTHING IN YOUR OUTBOX!</h3>
       <% else%>
-        <% @inbox.each do |message|%>
+        <% @outbox.each do |message|%>
         <div class="space">
           <span class="image">
-            "<%=User.get_username_by_id(user_id: message.user_id_from)%>">
+            "<%=User.get_username_by_id(user_id: message.user_id_to)%>">
           </span>
         <div class="top-of-space">
           <span class="price">
