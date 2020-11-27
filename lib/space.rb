@@ -2,7 +2,7 @@ require 'pg'
 require_relative 'database_connection'
 
 class Space
-  attr_reader :space_id, :user_id, :price, :headline, :description
+  attr_reader :space_id, :user_id, :price, :headline, :description, :image
 
   def initialize(space_id:, user_id:, price:, headline:, description:, image: 'https://via.placeholder.com/200x100')
     @space_id = space_id.to_i
