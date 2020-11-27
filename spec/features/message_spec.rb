@@ -6,7 +6,7 @@ feature 'you can message people' do
     fill_in('password', with: 'Testlength123')
     click_button('LOGIN')
     click_button('MESSAGES')
-    expect(page.current_path).to eq '/messages'
+    expect(page.current_path).to eq '/messages/'+user1.user_id.to_s+'/inbox'
   end
 
   scenario 'user2 messages user1, user1 can see it' do
@@ -17,7 +17,7 @@ feature 'you can message people' do
     fill_in('email', with: 'test1@test.com')
     fill_in('password', with: 'Testlength123')
     click_button('LOGIN')
-    click_button('MESSAGES')
+    click_button("MESSAGES")
     expect(page).to have_content 'test'
     expect(page).to have_content 'brian2'
   end

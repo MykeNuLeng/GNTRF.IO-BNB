@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>GNTRF.IO - Spaces</title>
+    <title>GNTRF.IO - Inbox</title>
     <link rel="stylesheet" href="../spaces.css">
     <script src="../scripts/nav-bar.js"></script>
   </head>
@@ -26,20 +26,17 @@
     </div>
     <div class="container">
 
-    <% if @spaces.empty? %>
-      <h3 class="no-listings">NO CURRENT SPACES!</h3>
+    <% if @inbox.empty? %>
+      <h3 class="no-listings">NO CURRENT MESSAGES!</h3>
     <% else%>
-      <% @spaces.each do |space|%>
+      <% @inbox.each do |message|%>
       <div class="space">
         <span class="image">
-          <img class="space-img" src="<%= space.image%>">
+          <img class="space-img" src="<%=%>">
         </span>
       <div class="top-of-space">
-        <span class="headline">
-          <%=space.headline%>
-        </span>
         <span class="price">
-          £<%=space.price / 100%> per night
+          SENT AT:<%= message.time.strftime("%Y/%m/%d %H:%M:%S")%>
         </span>
       </div>
       <br>
@@ -47,7 +44,7 @@
       <br>
         <div class="bottom-of-space">
           <span class="description">
-            <%=space.description%>
+            <%=message.content%>
             </span>
         </div>
       </div>

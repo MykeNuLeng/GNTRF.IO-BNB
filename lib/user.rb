@@ -40,6 +40,10 @@ class User
     DatabaseConnection.query("SELECT id FROM users WHERE username = '#{username.downcase}';")[0]["id"].to_i
   end
 
+  def self.get_username_by_id(user_id:)
+    DatabaseConnection.query("SELECT username FROM users WHERE id = #{user_id};")[0]["username"]
+  end
+
   private
   def self.valid_username?(username:)
     return false if username.length < 5
