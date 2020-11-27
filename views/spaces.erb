@@ -23,6 +23,11 @@
         <%end%>
         </form>
       </div>
+      <%if flash[:notice]%>
+       <div class="alert">
+        <%= flash[:notice]%>
+       </div>
+    <% end%>
     </div>
     <div class="container">
 
@@ -49,6 +54,9 @@
           <span class="description">
             <%=space.description%>
             </span>
+            <form action="/spaces/<%=space.space_id%>/book">
+          <button class="book-button">BOOK</button>
+            </form>
         </div>
       </div>
     <%end%>

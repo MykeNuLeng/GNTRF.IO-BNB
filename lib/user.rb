@@ -36,6 +36,10 @@ class User
     User.new(user_id: user_info[0]["id"], username: user_info[0]["username"], email: email)
   end
 
+  def self.get_id_by_username(username:)
+    DatabaseConnection.query("SELECT id FROM users WHERE username = '#{username.downcase}';")[0]["id"].to_i
+  end
+
   private
   def self.valid_username?(username:)
     return false if username.length < 5

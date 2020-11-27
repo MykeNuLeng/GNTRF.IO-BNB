@@ -94,6 +94,23 @@ class Controller < Sinatra::Base
 
     redirect('/profile/spaces')
   end
+  
+  get '/spaces/:id/book' do
+    redirect('/') unless session[:user]
+
+    erb :'spaces/book'
+  end
+
+  post '/spaces/:id/book' do
+    Order.create(
+      space_id: params[:id],
+      user_id: session[:user].user_id,
+      booking_start: params[:start],
+      booking_end: params[:end]
+    )
+    flash[:notice] = "ORDER PENDING"
+    redirect('/spaces')
+  end
 
   get '/profile' do
     redirect('/') unless session[:user]
