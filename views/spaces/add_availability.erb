@@ -1,5 +1,45 @@
-<form action="./add-availability" method="post">
-    <input type="date" name="start" required>
-    <input type="date" name="end" required>
-    <button>Submit</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GNTRF.IO - Spaces</title>
+    <link rel="stylesheet" href="../../profile.css">
+  </head>
+  <body>
+    <div class="nav-bar" id="nav-bar">
+      <div class="logo">
+        <a href="/"><img name="logo" src="../../images/logo.png"></a>
+      </div>
+      <div class="nav-buttons">
+        <form>
+        <%if session[:user]%>
+        <button formaction="/spaces/new">NEW LISTING</button>
+        <button formaction="/profile">PROFILE</button>
+        <button formaction="/sessions/end">LOG OFF</button>
+        <%else%>
+        <button formaction="/">LOG IN</button>
+        <%end%>
+        </form>
+      </div>
+      <%if flash[:notice]%>
+       <div class="alert">
+        <%= flash[:notice]%>
+       </div>
+    <% end%>
+    </div>
+    <div class="container availability">
+        <h1 class="current-header availability-header">ADD AVAILABILITY</h1>
+        <h2 class="space-headline"><%= @space.headline%></h2>
+        <img class="space-img" src="<%=@space.image%>">
+        <form action="./add-availability" method="post" class="user-input">
+            <input type="date" name="start" required>
+            <input type="date" name="end" required>
+            <br>
+            <button>Submit</button>
+        </form>
+    </div>
+  </body>
+  </html>
+
+

@@ -81,6 +81,7 @@ class Controller < Sinatra::Base
 
   get '/spaces/:id/add-availability' do
     redirect('/') unless session[:user]
+    @space = Space.find(space_id: params[:id])
 
     erb :'/spaces/add_availability'
   end

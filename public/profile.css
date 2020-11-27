@@ -180,3 +180,35 @@ button:hover {
   top: 45px;
 }
 
+.user-input input {
+  background: #D1CFE2;
+  border: 1px solid #9CADCE;
+  border-radius: 33.5px;
+  outline: none;
+  margin-bottom: 40px;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: 200 !important;
+  font-size: 30px;
+}
+
+.availability {
+  height: 600px;
+  width: 700px;
+  text-align: center;
+}
+
+.availability * {
+  margin-top: 50px;
+}
+
+.availability-header {
+  float: left !important;
+  text-transform: uppercase !important;
+}
+
+.space-headline {
+  float: left;
+  margin-bottom: 50px;
+  text-transform: uppercase !important;
+  margin-left: 30px;
+}
