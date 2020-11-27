@@ -107,4 +107,9 @@ describe User do
     end
   end
 
+  it "Gets correct id from username" do
+    test_user = User.create(username: "tEsTy", password: "123Password", email: "testymctesterson@test.org")
+    expect(User.get_id_by_username(username: "tEsTy")).to eq(test_user.user_id)
+  end
+
 end
