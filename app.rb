@@ -68,11 +68,14 @@ class Controller < Sinatra::Base
   end
 
   post '/spaces/new' do
+    image = params[:image].empty? ? nil : params[:image]
+
     Space.create(
       user_id: session[:user].user_id,
       price: params[:price].to_i * 100,
       headline: params[:headline],
-      description: params[:description]
+      description: params[:description],
+      image: image
     )
 
     redirect('/spaces')
