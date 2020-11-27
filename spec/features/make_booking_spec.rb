@@ -12,5 +12,6 @@ feature "Make booking" do
     expect(page).to have_button('BOOK')
     click_button('BOOK')
     expect(current_path).to eq("/spaces/#{space.space_id}/book")
+    expect(page.status_code).to eq(200)
   end
 end

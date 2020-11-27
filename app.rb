@@ -79,6 +79,10 @@ class Controller < Sinatra::Base
     redirect('/spaces')
   end
 
+  get '/spaces/:id/book' do
+    "Hello Booking"
+  end
+
   get '/profile' do
     redirect('/') unless session[:user]
 
