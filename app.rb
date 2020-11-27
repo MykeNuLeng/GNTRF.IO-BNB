@@ -85,8 +85,14 @@ class Controller < Sinatra::Base
     erb :'/spaces/add_availability'
   end
 
-  post '/spaces/add-availability' do
-    p params
+  post '/spaces/:id/add-availability' do
+    Space.make_available(
+      space_id: params[:id],
+      start_date: params[:start],
+      end_date: params[:end]
+    )
+
+    redirect('/profile/spaces')
   end
 
   get '/profile' do

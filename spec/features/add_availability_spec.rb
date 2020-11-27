@@ -21,7 +21,20 @@ feature "Add Availability" do
     expect(current_path).to eq('/profile/spaces')
     click_button("ADD AVAILABILITY")
     expect(current_path).to eq("/spaces/#{space.space_id}/add-availability")
-    expect(page).to have_field('start-date')
-    expect(page).to have_field('end-date')
+    expect(page).to have_field('start')
+    expect(page).to have_field('end')
+  end
+
+  scenario "allows submission" do
+    space = create_landlord_with_space_and_login
+    click_button('PROFILE')
+    click_link('Spaces')
+    expect(current_path).to eq('/profile/spaces')
+    click_button("ADD AVAILABILITY")
+    expect(current_path).to eq("/spaces/#{space.space_id}/add-availability")
+    fill_in('start', with: '2020/12/25')
+    fill_in('end', with: '2020/12/31')
+    click_button('Submit')
+    expect(current_path).to eq('/profile/spaces')
   end
 end
