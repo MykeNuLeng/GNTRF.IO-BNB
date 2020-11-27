@@ -21,7 +21,7 @@ feature "Add Availability" do
     expect(current_path).to eq('/profile/spaces')
     click_button("ADD AVAILABILITY")
     expect(current_path).to eq("/spaces/#{space.space_id}/add-availability")
-    expect(page).to have_form('start-date')
-    expect(page).to have_form('end-date')
+    expect(page).to have_field('start-date')
+    expect(page).to have_field('end-date')
   end
 end
