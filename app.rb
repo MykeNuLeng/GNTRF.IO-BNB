@@ -97,10 +97,10 @@ class Controller < Sinatra::Base
 
     redirect('/profile/spaces')
   end
-  
+
   get '/spaces/:id/book' do
     redirect('/') unless session[:user]
-    
+
     @space = Space.find(space_id: params[:id])
     erb :'spaces/book'
   end
@@ -112,6 +112,7 @@ class Controller < Sinatra::Base
       booking_start: params[:start],
       booking_end: params[:end]
     )
+    Message.send_message(my_id: session[:user].user_id, recipient_id: Space.owner_id_by_space_id(space_id: params[:id].to_i), content: "#{session[:user].username} has requested a booking in one of your spaces!")
     flash[:notice] = "ORDER PENDING"
     redirect('/spaces')
   end
@@ -144,6 +145,7 @@ class Controller < Sinatra::Base
 
   get '/profile/lettings/:id/confirm' do
     Order.confirm(order_id: params[:id])
+    Message.send_message(my_id: session[:user].user_id, recipient_id: Order.find_by_order_id(order_id: params[:id]).user_id, content: "#{session[:user].username} has confirmed your booking!")
     redirect '/profile/lettings'
   end
 
@@ -163,7 +165,7 @@ class Controller < Sinatra::Base
 
   post '/messages/:id/new' do
     if User.get_id_by_username(username: params[:recipient])
-      message = Message.send_message(my_id: params[:id].to_i, recipient_id: User.get_id_by_username(username: params[:recipient]), content: params[:content])
+      Message.send_message(my_id: params[:id].to_i, recipient_id: User.get_id_by_username(username: params[:recipient]), content: params[:content])
     end
     redirect '/'
   end

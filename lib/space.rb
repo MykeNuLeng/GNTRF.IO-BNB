@@ -65,6 +65,10 @@ class Space
     )
   end
 
+  def self.owner_id_by_space_id(space_id:)
+    DatabaseConnection.query("SELECT user_id FROM spaces WHERE id = '#{space_id}';")[0]["user_id"].to_i
+  end
+
   # Update
 
   def self.make_available(space_id:, start_date:, end_date:) # currently implementing dates to be passed as strings in format "yyyy/mm/dd" can change if needed
