@@ -41,7 +41,8 @@ class Space
         user_id: space['user_id'],
         price: space['price'],
         headline: space['headline'],
-        description: space['description']
+        description: space['description'],
+        image: space['image']
       )
     end
   end
