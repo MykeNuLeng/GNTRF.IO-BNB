@@ -31,6 +31,7 @@ feature 'you can message people' do
     fill_in('password', with: 'Testlength123')
     click_button('LOGIN')
     click_button('MESSAGES')
+    expect(page).to have_content 'NOTHING IN YOUR INBOX!'
     click_link('OUTBOX')
     click_link('NEW MESSAGE')
     fill_in("recipient", with: 'brian2')

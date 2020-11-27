@@ -27,12 +27,12 @@
     <div class="container">
 
     <% if @inbox.empty? %>
-      <h3 class="no-listings">NO CURRENT MESSAGES!</h3>
+      <h3 class="no-listings">NOTHING IN YOUR INBOX!</h3>
     <% else%>
       <% @inbox.each do |message|%>
       <div class="space">
         <span class="image">
-          <img class="space-img" src="<%=%>">
+          "<%=User.get_username_by_id(user_id: message.user_id_from)%>">
         </span>
       <div class="top-of-space">
         <span class="price">
