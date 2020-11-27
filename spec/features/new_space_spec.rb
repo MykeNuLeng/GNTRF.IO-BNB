@@ -28,7 +28,7 @@ feature 'new space' do
     fill_in('headline', with: 'Test Property')
     fill_in('description', with: 'Lovely property')
     fill_in('price', with: '69')
-    fill_in('photo', with: 'https://i.imgur.com/8KnWbIX.mp4')
+    fill_in('photo', with: 'https://via.placeholder.com/200x100')
     click_button('SUBMIT')
     expect(current_path).to eq('/spaces')
     expect(page).to have_content(/Test Property/)
