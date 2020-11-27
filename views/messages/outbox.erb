@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GNTRF.IO - Outbox</title>
-    <link rel="stylesheet" href="../spaces.css">
-    <script src="../scripts/nav-bar.js"></script>
+    <link rel="stylesheet" href="../../profile.css">
   </head>
   <body>
     <div class="nav-bar" id="nav-bar">
       <div class="logo">
-        <a href="/"><img name="logo" src="../images/logo.png"></a>
+        <a href="/"><img name="logo" src="../../images/logo.png"></a>
       </div>
       <div class="nav-buttons">
         <form>
@@ -25,13 +24,19 @@
       </div>
     </div>
     <div class="container">
+      <div class="profile-box-links">
       <a class="log-in-selector" href='/messages/<%= session[:user].user_id %>/inbox'>INBOX</a>
-      <a class="sign-up-selector" href='/messages/<%= session[:user].user_id %>/outbox'>OUTBOX</a>
+      <a class="log-in-selector" href='/messages/<%= session[:user].user_id %>/outbox'>OUTBOX</a>
+      <a class="log-in-selector" href='/messages/<%= session[:user].user_id %>/new'>NEW MESSAGE</a>
+      
+      </div>
+      <hr class="box-line">
+
       <% if @outbox.empty? %>
         <h3 class="no-listings">NOTHING IN YOUR OUTBOX!</h3>
       <% else%>
         <% @outbox.each do |message|%>
-        <div class="space">
+        <div class="order">
           <span class="image">
             "<%=User.get_username_by_id(user_id: message.user_id_to)%>"
           </span>
