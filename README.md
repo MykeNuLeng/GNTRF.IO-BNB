@@ -68,19 +68,24 @@ On Monday, we agreed to work towards an MVP with functionality to sign up, log i
 
 ## User interface:
 ![](public/images/colour_palette.png)
-We chose this palette of five colours to base our stylling off.
+
+Palette of five colours to base our stylling off.
 
 ![](public/images/login_signup.png)
-A screenshot of the login / signup page. 
+
+Login / signup page. 
 
 ![](public/images/view_spaces.png)
-A screenshot of the spaces page.
+
+Spaces page.
 
 ![](public/images/new_space.png)
-A screenshot of the new space form.
+
+New space form.
 
 ![](public/images/bookings.png)
-A screenshot of the bookings page. 
+
+Bookings page. 
 
 ## Run
 1.  Clone the repo
