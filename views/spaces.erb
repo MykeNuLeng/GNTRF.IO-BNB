@@ -19,7 +19,7 @@
         <button formaction="/profile">PROFILE</button>
         <button formaction="/sessions/end">LOG OFF</button>
         <%else%>
-        <button>LOG IN</button>
+        <button formaction="/">LOG IN</button>
         <%end%>
         </form>
       </div>
@@ -27,33 +27,32 @@
     <div class="container">
 
     <% if @spaces.empty? %>
-    <h3 class="no-listings">NO CURRENT SPACES!</h3>
+      <h3 class="no-listings">NO CURRENT SPACES!</h3>
     <% else%>
-    <% @spaces.each do |space|%>
-    <div class="space">
-      <span class="image">
-        <img src="<%= space.image%>">
-      </span>
+      <% @spaces.each do |space|%>
+      <div class="space">
+        <span class="image">
+          <img class="space-img" src="<%= space.image%>">
+        </span>
       <div class="top-of-space">
-      <span class="headline">
-      <%=space.headline%>
-      </span>
-      <span class="price">
-      £<%=space.price / 100%> per night
-      </span>
+        <span class="headline">
+          <%=space.headline%>
+        </span>
+        <span class="price">
+          £<%=space.price / 100%> per night
+        </span>
       </div>
       <br>
       <br>
       <br>
-      <div class="bottom-of-space">
-      <span class="description">
-      <%=space.description%>
-      </span>
+        <div class="bottom-of-space">
+          <span class="description">
+            <%=space.description%>
+            </span>
+        </div>
       </div>
-
-    </div>
     <%end%>
-    <%end%>
-    </div>
+  <%end%>
+  </div>
   </body>
   </html>

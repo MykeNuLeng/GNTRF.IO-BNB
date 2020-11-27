@@ -30,7 +30,7 @@ class Space
 
   def self.all
     result = DatabaseConnection.query("SELECT * FROM spaces;")
-    result.map{ |rental| Space.new(space_id: rental['id'], user_id: rental['user_id'], price: rental['price'], headline: rental['headline'], description: rental['description']) }
+    result.map{ |rental| Space.new(space_id: rental['id'], user_id: rental['user_id'], price: rental['price'], headline: rental['headline'], description: rental['description'], image: rental['image']) }
   end
 
   def self.open_dates(space_id:)
