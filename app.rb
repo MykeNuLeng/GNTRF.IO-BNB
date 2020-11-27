@@ -79,6 +79,22 @@ class Controller < Sinatra::Base
     redirect('/spaces')
   end
 
+  get '/spaces/:id/add-availability' do
+    redirect('/') unless session[:user]
+
+    erb :'/spaces/add_availability'
+  end
+
+  post '/spaces/:id/add-availability' do
+    Space.make_available(
+      space_id: params[:id],
+      start_date: params[:start],
+      end_date: params[:end]
+    )
+
+    redirect('/profile/spaces')
+  end
+  
   get '/spaces/:id/book' do
     redirect('/') unless session[:user]
 
@@ -86,7 +102,6 @@ class Controller < Sinatra::Base
   end
 
   post '/spaces/:id/book' do
-    # def self.create(space_id:, user_id:, booking_start:, booking_end:)
     Order.create(
       space_id: params[:id],
       user_id: session[:user].user_id,
