@@ -127,8 +127,15 @@ class Controller < Sinatra::Base
   end
 
   post '/messages/:id/new' do
-    if get_id_by_username(username: params[:recipient])
-      Message.send_message(my_id: params[:id], recipient_id: User.get_id_by_username(username: params[:recipient]), content: params[:content])
+    if User.get_id_by_username(username: params[:recipient])
+      p 'in if statement'
+      p 'recipient username and id'
+      p params[:recipient]
+      p User.get_id_by_username(username: params[:recipient])
+      p 'sender username'
+      p params[:id]
+      p User.get_id_by_username(username: params[:id])
+      Message.send_message(my_id: params[:id].to_i, recipient_id: User.get_id_by_username(username: params[:recipient]), content: params[:content])
     end
     redirect '/'
   end

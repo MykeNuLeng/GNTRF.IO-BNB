@@ -46,7 +46,7 @@ class User
   end
 
   def self.get_username_by_id(user_id:)
-    result = DatabaseConnection.query("SELECT username FROM users WHERE id = #{user_id};")
+    result = DatabaseConnection.query("SELECT username FROM users WHERE id = #{user_id.to_i};")
     if result.cmd_tuples == 0
       return false
     else

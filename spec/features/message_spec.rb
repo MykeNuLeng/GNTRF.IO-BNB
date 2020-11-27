@@ -60,6 +60,8 @@ feature 'you can message people' do
     fill_in("recipient", with: 'brian2')
     fill_in('content', with: 'test')
     click_button('SEND')
+    click_button("MESSAGES")
+    click_link("OUTBOX")
     expect(page).to have_content 'brian2'
     expect(page).to have_content 'test'
   end
