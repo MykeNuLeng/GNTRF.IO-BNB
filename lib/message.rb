@@ -9,4 +9,15 @@ class Message
     @time = time
   end
 
+  def self.send_message(my_id:, recipient_id:, content:)
+    content = Message.sub_apostrophe(content)
+    date = Time.now.strftime("%Y/%m/%d")
+    time = Time.now.strftime("%H:%M:%S")
+    DatabaseConnection.query("INSERT INTO message (user_id_from, user_id_to, content, date, time) VALUES (#{my_id}, #{recipient_id}, '#{content}', '#{date}', '#{time}');")
+  end
+
+  private
+  def self.sub_apostrophe(text)
+    text.gsub "'", "&#39;"
+  end
 end
