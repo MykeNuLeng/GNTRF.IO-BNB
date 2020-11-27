@@ -79,6 +79,12 @@ class Controller < Sinatra::Base
     redirect('/spaces')
   end
 
+  get '/spaces/:id/add-availability' do
+    redirect('/') unless session[:user]
+
+    "Hello Availability!"
+  end
+
   get '/profile' do
     redirect('/') unless session[:user]
 
