@@ -4,17 +4,18 @@ require_relative 'database_connection'
 class Space
   attr_reader :space_id, :user_id, :price, :headline, :description
 
-  def initialize(space_id:, user_id:, price:, headline:, description:)
+  def initialize(space_id:, user_id:, price:, headline:, description:, image: 'https://via.placeholder.com/200x100')
     @space_id = space_id.to_i
     @user_id = user_id.to_i
     @price = price.to_i
     @headline = headline
     @description = description
+    @image = image
   end
 
   # Create
 
-  def self.create(user_id:, price:, headline:, description:, image: "https://i.imgur.com/8aTSula_d.webp?maxwidth=760&fidelity=grand")
+  def self.create(user_id:, price:, headline:, description:, image: "https://via.placeholder.com/200x100")
     return false unless Space.valid_price?(price: price)
     return false unless headline.length < 160
     headline = Space.sub_apostrophe(headline)
@@ -22,7 +23,7 @@ class Space
     result = DatabaseConnection.query("INSERT INTO spaces (user_id, price, headline, description, image)
                               VALUES ('#{user_id}', '#{price}', '#{headline}', '#{description}', '#{image}')
                               RETURNING id;")
-    Space.new(space_id: result[0]["id"], user_id: user_id, price: price, headline: headline, description: description)
+    Space.new(space_id: result[0]["id"], user_id: user_id, price: price, headline: headline, description: description, image: image)
   end
 
   # Read

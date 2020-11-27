@@ -72,7 +72,8 @@ class Controller < Sinatra::Base
       user_id: session[:user].user_id,
       price: params[:price].to_i * 100,
       headline: params[:headline],
-      description: params[:description]
+      description: params[:description],
+      image: params[:photo]
     )
 
     redirect('/spaces')
