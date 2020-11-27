@@ -23,6 +23,11 @@
         <%end%>
         </form>
       </div>
+      <%if flash[:notice]%>
+       <div class="alert">
+        <%= flash[:notice]%>
+       </div>
+    <% end%>
     </div>
     <div class="container">
 

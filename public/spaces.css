@@ -32,6 +32,23 @@ body {
   top: 25px;
 }
 
+.alert {
+    background: #52B2CF;
+    border: 1px solid #D4AFB9;
+    border-radius: 33.5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 40px;
+    width: 628px;
+    margin: auto;
+    font-size: 32px;
+    color: #FFFFFF;
+    text-align: center;
+    font-weight: 500;
+    position: relative;
+    bottom: 2em;
+}
+
 button {
   background: #7ec4cf;
   border: 1px solid #52b2cf;
