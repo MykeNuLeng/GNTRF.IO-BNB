@@ -175,4 +175,8 @@ button:hover {
   margin-left: 15px;
 }
 
+.edit-button {
+  position: relative;
+  top: 45px;
+}
 
