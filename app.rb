@@ -98,7 +98,8 @@ class Controller < Sinatra::Base
   
   get '/spaces/:id/book' do
     redirect('/') unless session[:user]
-
+    
+    @space = Space.find(space_id: params[:id])
     erb :'spaces/book'
   end
 
