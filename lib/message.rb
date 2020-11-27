@@ -19,14 +19,14 @@ class Message
   def self.get_inbox(user_id:)
     result = DatabaseConnection.query("SELECT * FROM message WHERE user_id_to = #{user_id};")
     result.map do |each|
-      Message.new(message_id: each["id"], user_id_from: each["user_id_from"], user_id_to: each["user_id_from"], content: each["content"], time: Message.time_from_database(each["date"], each["time"]))
+      Message.new(message_id: each["id"], user_id_from: each["user_id_from"], user_id_to: each["user_id_to"], content: each["content"], time: Message.time_from_database(each["date"], each["time"]))
     end.sort_by(&:time).reverse
   end
 
   def self.get_outbox(user_id:)
     result = DatabaseConnection.query("SELECT * FROM message WHERE user_id_from = #{user_id};")
     result.map do |each|
-      Message.new(message_id: each["id"], user_id_from: each["user_id_from"], user_id_to: each["user_id_from"], content: each["content"], time: Message.time_from_database(each["date"], each["time"]))
+      Message.new(message_id: each["id"], user_id_from: each["user_id_from"], user_id_to: each["user_id_to"], content: each["content"], time: Message.time_from_database(each["date"], each["time"]))
     end.sort_by(&:time).reverse
   end
 
